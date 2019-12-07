@@ -18,7 +18,6 @@ wget "https://github.com/praiman99/AutoScriptDebian9/master/Files/Menu/bashmenu.
 # disable ipv6
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 
-
 # set time GMT +8
 ln -fs /usr/share/zoneinfo/Asia/Manila /etc/localtime
 
