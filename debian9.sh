@@ -1,4 +1,5 @@
 #!/bin/bash
+#Script Remodified By PR Aiman
 
 wget -O - https://swupdate.openvpn.net/repos/repo-public.gpg|apt-key add -
 sleep 2
