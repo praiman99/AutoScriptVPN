@@ -1,0 +1,62 @@
+#!/bin/bash
+#Licensed to https://www.hostingtermurah.net/
+#Script by PR Aiman
+
+red='\e[1;31m'
+green='\e[0;32m'
+NC='\e[0m'
+echo "Connecting to Server..."
+sleep 0.5
+echo "Checking Permision..."
+sleep 0.4
+CEK=PR Aiman
+if [ "$CEK" != "PR Aiman" ]; then
+		echo -e "${red}Permission Denied!${NC}";
+        echo $CEK;
+        exit 0;
+else
+echo -e "${green}Permission Accepted...${NC}"
+sleep 1
+clear
+fi
+
+if [ -f /etc/debian_version ]; then
+	UIDN=1000
+elif [ -f /etc/redhat-release ]; then
+	UIDN=500
+else
+	UIDN=500
+fi
+
+echo " "
+echo " "
+echo "===========================================";
+echo " "
+echo "==================================="
+echo " PREMIUM SERVER THE BEST IN MALAY  "
+echo "==================================="
+echo "==================================="
+echo "        USER ACCOUNTS LIST         "
+echo "==================================="
+echo "[USERNAME]   -   [DATE EXPIRED]  "
+echo " "
+while read ceklist
+do
+        AKUN="$(echo $ceklist | cut -d: -f1)"
+        ID="$(echo $ceklist | grep -v nobody | cut -d: -f3)"
+        exp="$(chage -l $AKUN | grep "Account expires" | awk -F": " '{print $2}')"
+        if [[ $ID -ge $UIDN ]]; then
+        printf "%-17s %2s\n" "$AKUN" "$exp"
+        fi
+done < /etc/passwd
+JUMLAH="$(awk -F: '$3 >= '$UIDN' && $1 != "nobody" {print $1}' /etc/passwd | wc -l)"
+echo "====================================="
+echo "Number Of User Accounts: $JUMLAH USERS"
+echo "====================================="
+echo "====================================="
+echo "   PREMIUM SERVER THE BEST IN MALAY  "
+echo "====================================="
+echo " "
+echo "===========================================";
+echo " ";
+echo " ";
