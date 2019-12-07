@@ -1,0 +1,303 @@
+#!/bin/bash
+#Licensed to https://www.hostingtermurah.net/
+#Script by PR Aiman
+
+if [[ $USER != "root" ]]; then
+	echo "Oops! root privileges needed"
+	exit
+fi
+
+# go to root
+cd
+
+#Cek Curl
+if [ ! -e /usr/bin/curl ]; then
+	if [[ "$OS" = 'debian' ]]; then
+	apt-get -y update && apt-get -y install curl
+	else
+	yum -y update && yum -y install curl
+	fi
+fi
+
+# check registered ip
+red='\e[1;31m'
+green='\e[0;32m'
+NC='\e[0m'
+echo "Connecting to Server..."
+sleep 0.4
+echo "Checking Permision..."
+sleep 0.3
+CEK=PR Aiman
+if [ "$CEK" != "PR Aiman" ]; then
+		echo -e "${red}Permission Denied!${NC}";
+        echo $CEK;
+        exit 0;
+else
+echo -e "${green}Permission Accepted...${NC}"
+sleep 0.6
+clear
+fi
+
+if [[ -e /etc/debian_version ]]; then
+	OS=debian
+	RCLOCAL='/etc/rc.local'
+elif [[ -e /etc/centos-release || -e /etc/redhat-release ]]; then
+	OS=centos
+	RCLOCAL='/etc/rc.d/rc.local'
+	chmod +x /etc/rc.d/rc.local
+else
+	echo "This script only works on Debian and CentOS system."
+	exit
+fi
+
+x=$1
+
+case $x in
+0)
+	#dropbear
+	rm -f /root/dropbearport
+	dropbearport="$(netstat -nlpt | grep -i dropbear | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
+	echo "Dropbear Port:"
+
+	cat > /root/dropbearport <<-END
+	$dropbearport
+	END
+
+	exec</root/dropbearport
+	while read line
+	do
+		sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 2 -j REJECT//g" -i $RCLOCAL
+		sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 3 -j REJECT//g" -i $RCLOCAL
+		sed "s/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 2 -j REJECT//g" -i $RCLOCAL
+		sed "s/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 3 -j REJECT//g" -i $RCLOCAL
+		echo "$line ==> Limit $x login"
+		#grep "iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT" $RCLOCAL > /dev/null
+		#if [[ $? != 0 ]];then
+			#sed -i "1 a\iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT" $RCLOCAL
+		#fi
+		#sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT/g" -i $RCLOCAL
+	done
+	
+	echo ""
+	rm -f /root/dropbearport
+	
+	#openssh
+	rm -f /root/opensshport
+	opensshport="$(netstat -nlpt | grep -i sshd | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
+	echo "OpenSSH Port:"
+	
+	cat > /root/opensshport <<-END
+	$opensshport
+	END
+	
+	exec</root/opensshport
+	while read line
+	do
+		sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 2 -j REJECT//g" -i $RCLOCAL
+		sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 3 -j REJECT//g" -i $RCLOCAL
+		sed "s/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 2 -j REJECT//g" -i $RCLOCAL
+		sed "s/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 3 -j REJECT//g" -i $RCLOCAL
+		echo "$line ==> Limit $x login"
+		#grep "iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT" $RCLOCAL > /dev/null
+		#if [[ $? != 0 ]];then
+			#sed -i "1 a\iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT" $RCLOCAL
+		#fi
+		#sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT/g" -i $RCLOCAL
+	done
+	
+	echo ""
+	rm -f /root/opensshport
+	
+	sed '/^$/d' $RCLOCAL > /tmp/rc.local
+	cat /tmp/rc.local > $RCLOCAL
+	$RCLOCAL start
+;;
+1)
+    #dropbear
+	rm -f /root/dropbearport
+	dropbearport="$(netstat -nlpt | grep -i dropbear | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
+	echo "Dropbear Port:"
+
+	cat > /root/dropbearport <<-END
+	$dropbearport
+	END
+
+	exec</root/dropbearport
+	while read line
+	do
+		sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 2 -j REJECT//g" -i $RCLOCAL
+		sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 3 -j REJECT//g" -i $RCLOCAL
+		sed "s/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 2 -j REJECT//g" -i $RCLOCAL
+		sed "s/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 3 -j REJECT//g" -i $RCLOCAL
+		echo "$line ==> Limit $x login"
+		grep "iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT" $RCLOCAL > /dev/null
+		if [[ $? != 0 ]];then
+			sed -i "1 a\iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT" $RCLOCAL
+		fi
+		#sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT/g" -i $RCLOCAL
+	done
+	
+	echo ""
+	rm -f /root/dropbearport
+	
+	#openssh
+	rm -f /root/opensshport
+	opensshport="$(netstat -nlpt | grep -i sshd | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
+	echo "OpenSSH Port:"
+	
+	cat > /root/opensshport <<-END
+	$opensshport
+	END
+	
+	exec</root/opensshport
+	while read line
+	do
+		sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 2 -j REJECT//g" -i $RCLOCAL
+		sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 3 -j REJECT//g" -i $RCLOCAL
+		sed "s/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 2 -j REJECT//g" -i $RCLOCAL
+		sed "s/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 3 -j REJECT//g" -i $RCLOCAL
+		echo "$line ==> Limit $x login"
+		grep "iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT" $RCLOCAL > /dev/null
+		if [[ $? != 0 ]];then
+			sed -i "1 a\iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT" $RCLOCAL
+		fi
+		#sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT/g" -i $RCLOCAL
+	done
+	
+	echo ""
+	rm -f /root/opensshport
+	
+	sed '/^$/d' $RCLOCAL > /tmp/rc.local
+	cat /tmp/rc.local > $RCLOCAL
+	$RCLOCAL start
+;;
+2)
+	#dropbear
+	rm -f /root/dropbearport
+	dropbearport="$(netstat -nlpt | grep -i dropbear | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
+	echo "Dropbear Port:"
+
+	cat > /root/dropbearport <<-END
+	$dropbearport
+	END
+
+	exec</root/dropbearport
+	while read line
+	do
+		sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 2 -j REJECT//g" -i $RCLOCAL
+		sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 3 -j REJECT//g" -i $RCLOCAL
+		sed "s/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 2 -j REJECT//g" -i $RCLOCAL
+		sed "s/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 3 -j REJECT//g" -i $RCLOCAL
+		echo "$line ==> Limit $x login"
+		grep "iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT" $RCLOCAL > /dev/null
+		if [[ $? != 0 ]];then
+			sed -i "1 a\iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT" $RCLOCAL
+		fi
+		#sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT/g" -i $RCLOCAL
+	done
+	
+	echo ""
+	rm -f /root/dropbearport
+	
+	#openssh
+	rm -f /root/opensshport
+	opensshport="$(netstat -nlpt | grep -i sshd | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
+	echo "OpenSSH Port:"
+	
+	cat > /root/opensshport <<-END
+	$opensshport
+	END
+	
+	exec</root/opensshport
+	while read line
+	do
+		sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 2 -j REJECT//g" -i $RCLOCAL
+		sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 3 -j REJECT//g" -i $RCLOCAL
+		sed "s/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 2 -j REJECT//g" -i $RCLOCAL
+		sed "s/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 3 -j REJECT//g" -i $RCLOCAL
+		echo "$line ==> Limit $x login"
+		grep "iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT" $RCLOCAL > /dev/null
+		if [[ $? != 0 ]];then
+			sed -i "1 a\iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT" $RCLOCAL
+		fi
+		#sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT/g" -i $RCLOCAL
+	done
+	
+	echo ""
+	rm -f /root/opensshport
+	
+	sed '/^$/d' $RCLOCAL > /tmp/rc.local
+	cat /tmp/rc.local > $RCLOCAL
+	$RCLOCAL start
+;;
+3)
+	#dropbear
+	rm -f /root/dropbearport
+	dropbearport="$(netstat -nlpt | grep -i dropbear | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
+	echo "Dropbear Port:"
+
+	cat > /root/dropbearport <<-END
+	$dropbearport
+	END
+
+	exec</root/dropbearport
+	while read line
+	do
+		sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 2 -j REJECT//g" -i $RCLOCAL
+		sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 3 -j REJECT//g" -i $RCLOCAL
+		sed "s/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 2 -j REJECT//g" -i $RCLOCAL
+		sed "s/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 3 -j REJECT//g" -i $RCLOCAL
+		echo "$line ==> Limit $x login"
+		grep "iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT" $RCLOCAL > /dev/null
+		if [[ $? != 0 ]];then
+			sed -i "1 a\iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT" $RCLOCAL
+		fi
+		#sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT/g" -i $RCLOCAL
+	done
+	
+	echo ""
+	rm -f /root/dropbearport
+	
+	#openssh
+	rm -f /root/opensshport
+	opensshport="$(netstat -nlpt | grep -i sshd | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
+	echo "OpenSSH Port:"
+	
+	cat > /root/opensshport <<-END
+	$opensshport
+	END
+	
+	exec</root/opensshport
+	while read line
+	do
+		sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 2 -j REJECT//g" -i $RCLOCAL
+		sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 3 -j REJECT//g" -i $RCLOCAL
+		sed "s/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 2 -j REJECT//g" -i $RCLOCAL
+		sed "s/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above 3 -j REJECT//g" -i $RCLOCAL
+		echo "$line ==> Limit $x login"
+		grep "iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT" $RCLOCAL > /dev/null
+		if [[ $? != 0 ]];then
+			sed -i "1 a\iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT" $RCLOCAL
+		fi
+		#sed "s/#iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT/iptables -A INPUT -p tcp --syn --dport $line -m connlimit --connlimit-above $x -j REJECT/g" -i $RCLOCAL
+	done
+	
+	echo ""
+	rm -f /root/opensshport
+	
+	sed '/^$/d' $RCLOCAL > /tmp/rc.local
+	cat /tmp/rc.local > $RCLOCAL
+	$RCLOCAL start
+;;
+*)
+	echo ""
+	echo "Type autokill 1, single login only"
+	echo "Type autokill 2, limit 2 login only"
+	echo "Type autokill 3, maximum 3 login"
+	echo "Type autokill 0, for no limit login"
+	echo ""
+;;
+esac
+
+cd ~/
+rm -f /root/IP
