@@ -1,6 +1,6 @@
 #!/bin/bash
-#Script Remodified By PR Aiman
-
+# Original script by : Fordsenpai
+# Modified by : PR Aiman
 wget -O - https://swupdate.openvpn.net/repos/repo-public.gpg|apt-key add -
 sleep 2
 echo "deb http://build.openvpn.net/debian/openvpn/release/2.4 stretch main" > /etc/apt/sources.list.d/openvpn-aptrepo.list
@@ -18,6 +18,7 @@ wget "https://github.com/praiman99/AutoScriptDebian9/master/Files/Menu/bashmenu.
 
 # disable ipv6
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
+
 
 # set time GMT +8
 ln -fs /usr/share/zoneinfo/Asia/Manila /etc/localtime
@@ -42,6 +43,16 @@ echo "screenfetch" >> .profile
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=442/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
+
+# Install DDOS Deflate
+cd
+apt-get -y install dnsutils dsniff
+wget "https://github.com/praiman99/AutoScriptDebian9/raw/master/Files/Others/ddos-deflate-master.zip"
+unzip ddos-deflate-master.zip
+cd ddos-deflate-master
+./install.sh
+cd
+rm -rf ddos-deflate-master.zip
 
 # install squid3
 cat > /etc/squid/squid.conf <<-END
@@ -164,8 +175,8 @@ systemctl start openvpn@server
 #Create OpenVPN Config
 mkdir -p /home/vps/public_html
 cat > /home/vps/public_html/client.ovpn <<-END
-# Created by PR Aiman
-# https://t.me/PR_Aiman
+#Created by PR Aiman
+#https://t.me/PR_Aiman
 auth-user-pass
 client
 dev tun
@@ -371,10 +382,10 @@ clear
 echo " "
 echo "Installation has been completed!!"
 echo " Please Reboot your VPS"
-echo "--------------------------- Configuration Setup Server -------------------------"
+echo "=========================== Configuration Setup Server ========================="
 echo "                       Debian Script HostingTermurah Based                      "
 echo "                                   -PR Aiman-                                   "
-echo "--------------------------------------------------------------------------------"
+echo "================================================================================"
 echo ""  | tee -a log-install.txt
 echo "Server Information"  | tee -a log-install.txt
 echo "   - Timezone    : Asia/Manila (GMT +8)"  | tee -a log-install.txt
@@ -384,7 +395,7 @@ echo "   - Auto-Reboot : [OFF]"  | tee -a log-install.txt
 echo "   - IPv6        : [OFF]"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Application & Port Information"  | tee -a log-install.txt
-echo "   - OpenVPN		: TCP 1147 "  | tee -a log-install.txt
+echo "   - OpenVPN		: TCP 1194 "  | tee -a log-install.txt
 echo "   - OpenVPN-SSL	: 443 "  | tee -a log-install.txt
 echo "   - Dropbear		: 442"  | tee -a log-install.txt
 echo "   - Stunnel  	: 444"  | tee -a log-install.txt
