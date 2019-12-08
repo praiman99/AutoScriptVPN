@@ -19,8 +19,8 @@ echo "Connecting to Server..."
 sleep 0.4
 echo "Checking Permision..."
 sleep 0.3
-CEK=FordSenpai
-if [ "$CEK" != "FordSenpai" ]; then
+CEK=PRAiman
+if [ "$CEK" != "PRAiman" ]; then
 		echo -e "${red}Permission Denied!${NC}";
         echo $CEK;
         exit 0;
