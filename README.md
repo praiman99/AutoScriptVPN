@@ -23,7 +23,7 @@
 
 <p align="center">
 <pre>wget https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/debian9.sh && chmod +x debian9.sh && ./debian9.sh
-</p>
+<p></p>
 
 <h3 align="center">Additional Info</h3>
 <p align="center">
