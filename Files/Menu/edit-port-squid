@@ -51,7 +51,7 @@ rm -f /root/squidport
 
 if [[ "$OS" = 'debian' ]]; then
 	read -p "Insert Squid Port separated by 'space': " port
-	squidport="$(cat /etc/squid3/squid.conf | grep -i http_port | awk '{print $2}')"
+	squidport="$(cat /etc/squid/squid.conf | grep -i http_port | awk '{print $2}')"
 	echo ""
 	echo -e "\e[34;1mPort Squid before editing:\e[0m"
 
@@ -95,7 +95,7 @@ if [[ "$OS" = 'debian' ]]; then
 				echo -e "\e[031;1mPort $i failed to add. Port $i already used for OpenVPN\e[0m"
 			fi
 		else
-			sed -i "21 a\http_port $i" /etc/squid3/squid.conf
+			sed -i "21 a\http_port $i" /etc/squid/squid.conf
 			echo -e "\e[032;1mPort $i added successfully\e[0m"
 		fi
 	done
