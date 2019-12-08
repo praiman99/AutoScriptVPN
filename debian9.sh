@@ -7,7 +7,7 @@ echo "deb http://build.openvpn.net/debian/openvpn/release/2.4 stretch main" > /e
 #Requirement
 apt update
 apt upgrade -y
-apt install openvpn nginx php7.0-fpm stunnel4 squid3 dropbear easy-rsa vnstat ufw build-essential fail2ban zip -y
+apt install openvpn nginx php7.0-fpm stunnel4 dropbear easy-rsa vnstat ufw build-essential fail2ban zip -y
 
 # initializing var
 MYIP=`ifconfig eth0 | awk 'NR==2 {print $2}'`
@@ -39,11 +39,6 @@ chmod +x /usr/bin/screenfetch
 echo "clear" >> .profile
 echo "screenfetch" >> .profile
 
-# install dropbear
-sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=442/g' /etc/default/dropbear
-echo "/bin/false" >> /etc/shells
-
 # Install DDOS Deflate
 cd
 apt-get -y install dnsutils dsniff
@@ -55,6 +50,18 @@ cd
 rm -rf ddos-deflate-master.zip
 
 # install squid3
+apt-get update
+apt-get install build-essential
+apt remove unscd
+groupadd squid
+useradd -g squid -s /dev/null squid
+mkdir /downloads
+cd /downloads
+wget http://www.squid-cache.org/Versions/v3/3.3/squid-3.3.8.tar.gz
+tar zxvf squid-3.3.8.tar.gz
+cd squid-3.3.8
+./configure 
+make && make install
 cat > /etc/squid/squid.conf <<-END
 acl localhost src 127.0.0.1/32 ::1
 acl to_localhost dst 127.0.0.0/8 0.0.0.0/32 ::1
@@ -72,7 +79,6 @@ acl Safe_ports port 591
 acl Safe_ports port 777
 acl CONNECT method CONNECT
 acl SSH dst xxxxxxxxx-xxxxxxxxx/32
-acl SSH dst 103.103.0.118-103.103.0.118/32
 http_access allow SSH
 http_access allow TCP
 http_access allow manager localhost
@@ -91,6 +97,15 @@ refresh_pattern . 0 20% 4320
 visible_hostname PR Aiman
 END
 sed -i $MYIP2 /etc/squid/squid.conf;
+mkdir /usr/local/squid/var/cache
+mkdir /usr/local/squid/var/logs
+chown squid.squid /usr/local/squid/ -R
+/usr/local/squid/sbin/squid -z
+
+# install dropbear
+sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=442/g' /etc/default/dropbear
+echo "/bin/false" >> /etc/shells
 
 # setting banner
 rm /etc/issue.net
