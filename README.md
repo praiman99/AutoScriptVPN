@@ -17,6 +17,8 @@
 <h3 align="center">Commands</h3>
 <p align="center">
   <a><img src="https://img.shields.io/badge/Commands-menu-yellow.svg"></a>
+  </p>
+<p align="center">
   <a><img src="https://img.shields.io/badge/Life%20Time-IP%20Registered-lightgrey.svg"><a>
   </p>
   
