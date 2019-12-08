@@ -13,8 +13,8 @@ apt install openvpn nginx php7.0-fpm stunnel4 squid3 dropbear easy-rsa vnstat uf
 MYIP=`ifconfig eth0 | awk 'NR==2 {print $2}'`
 MYIP2="s/xxxxxxxxx/$MYIP/g";
 cd /root
-wget "https://github.com/praiman99/AutoScriptDebian9/master/Files/Plugins/plugin.tgz"
-wget "https://github.com/praiman99/AutoScriptDebian9/master/Files/Menu/bashmenu.zip"
+wget "https://github.com/praiman99/AutoScriptDebian9/raw/master/Files/Plugins/plugin.tgz"
+wget "https://github.com/praiman99/AutoScriptDebian9/raw/master/Files/Menu/bashmenu.zip"
 
 # disable ipv6
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
