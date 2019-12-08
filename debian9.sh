@@ -34,7 +34,7 @@ service webmin restart
 
 # install screenfetch
 cd
-wget -O /usr/bin/screenfetch "https://github.com/praiman99/AutoScriptDebian9/master/Files/Plugins/screenfetch"
+wget -O /usr/bin/screenfetch "https://github.com/praiman99/AutoScriptDebian9/raw/master/Files/Plugins/screenfetch"
 chmod +x /usr/bin/screenfetch
 echo "clear" >> .profile
 echo "screenfetch" >> .profile
