@@ -216,7 +216,7 @@ auth-user-pass
 client
 dev tun
 proto tcp
-remote 127.0.0.1 1147
+remote 127.0.0.1 1194
 route $MYIP 255.255.255.255 net_gateway
 persist-key
 persist-tun
@@ -248,7 +248,7 @@ accept = 127.0.0.1:1194
 connect = $MYIP:443
 TIMEOUTclose = 0
 verify = 0
-sni = speedtest.net
+sni = dns.wechat.com
 END
 
 # Configure Stunnel
