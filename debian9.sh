@@ -373,6 +373,9 @@ service dropbear restart
 service fail2ban restart
 service squid restart
 
+# remove unscd
+apt remove unscd
+
 #clearing history
 history -c
 rm -rf /root/*
