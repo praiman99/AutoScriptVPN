@@ -51,17 +51,7 @@ rm -rf ddos-deflate-master.zip
 
 # install squid3
 apt-get update
-apt-get install build-essential
-apt remove unscd
-groupadd squid
-useradd -g squid -s /dev/null squid
-mkdir /downloads
-cd /downloads
-wget http://www.squid-cache.org/Versions/v3/3.3/squid-3.3.8.tar.gz
-tar zxvf squid-3.3.8.tar.gz
-cd squid-3.3.8
-./configure 
-make && make install
+apt-get install squid3
 cat > /etc/squid/squid.conf <<-END
 acl localhost src 127.0.0.1/32 ::1
 acl to_localhost dst 127.0.0.0/8 0.0.0.0/32 ::1
@@ -97,10 +87,6 @@ refresh_pattern . 0 20% 4320
 visible_hostname PR Aiman
 END
 sed -i $MYIP2 /etc/squid/squid.conf;
-mkdir /usr/local/squid/var/cache
-mkdir /usr/local/squid/var/logs
-chown squid.squid /usr/local/squid/ -R
-/usr/local/squid/sbin/squid -z
 
 # install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
