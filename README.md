@@ -19,7 +19,7 @@
   <a><img src="https://img.shields.io/badge/Commands-menu-yellow.svg"></a>
  </p>
 
-<h3 align="center">Installation</h3> <a><img src="https://img.shields.io/badge/Life%20Time-IP%20Registered-lightgrey.svg"></a>
+<h3 align="center">Installation <img src="https://img.shields.io/badge/Life%20Time-IP%20Registered-lightgrey.svg"></h3>
 
 <p align="center">
 <pre>wget https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/debian9.sh && chmod +x debian9.sh && ./debian9.sh
