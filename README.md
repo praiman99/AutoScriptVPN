@@ -28,7 +28,7 @@
 <pre>wget https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/debian9.sh && chmod +x debian9.sh && ./debian9.sh
 </pre></p>
 
-<h3 align="center">How To Edit Index By PR Aiman</h3>
+<h3 align="center">How To Edit Index.html By PR Aiman</h3>
 
 <p align="center">
 <pre>nano /home/vps/public_html/index.html
@@ -47,4 +47,10 @@ Recommended OS: Debian 9 Stretch x64
 Creadit To : https://github.com/TholhahZabri/AutoScriptDebianStretch (Orignal Script)
 
 Contact Me : https://t.me/PR_Aiman
+
+<h3 align="center">Thanks To ALLAH S.W.T Syukur Alhamdulillah Semua benda buruk datangnya darikita dan semua benda baik datangnya dari Allah</h3>
+
+<p align="center">
+  <a><img src="https://img.shields.io/badge/Copyright%20©-PR%20Aiman%20AutoScriptDebian9%202019.%20All%20rights%20reserved...-green.svg" style="max-width:100%;">
+    </p>
    </p>
