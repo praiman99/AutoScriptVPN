@@ -33,13 +33,13 @@
 <p align="center">
 <pre>nano /home/vps/public_html/index.html
 </pre></p>
-
+After Edit Please Reboot
 <h3 align="center">How To Edit Issue.net By PR Aiman</h3>
 
 <p align="center">
 <pre>nano /etc/issue.net
 </pre></p>
-
+After Edit Please Reboot
 <h3 align="center">Additional Info</h3>
 <p align="center">
 Recommended OS: Debian 9 Stretch x64
