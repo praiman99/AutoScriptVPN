@@ -341,6 +341,10 @@ iptables-restore < /etc/iptables.up.rules
 sed -i 's/\/var\/www\/html;/\/home\/vps\/public_html\/;/g' /etc/nginx/sites-enabled/default
 cp /var/www/html/index.nginx-debian.html /home/vps/public_html/index.html
 
+# Remodified Index By PR Aiman
+rm /home/vps/public_html/index.html
+wget -O /home/vps/public_html/index.html https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Files/Others/index.html
+clear
 
 # Create and Configure rc.local
 cat > /etc/rc.local <<-END
@@ -395,6 +399,7 @@ echo "Installation has been completed!!"
 echo " Please Reboot your VPS"
 echo "=========================== Configuration Setup Server ========================="
 echo "                       Debian Script HostingTermurah Based                      "
+echo "                           Remodified & Fixed Script By                         "
 echo "                                   -PR Aiman-                                   "
 echo "================================================================================"
 echo ""  | tee -a log-install.txt
@@ -410,7 +415,7 @@ echo "   - OpenVPN		: TCP 1194 "  | tee -a log-install.txt
 echo "   - OpenVPN-SSL	: 443 "  | tee -a log-install.txt
 echo "   - Dropbear		: 442"  | tee -a log-install.txt
 echo "   - Stunnel  	: 444"  | tee -a log-install.txt
-echo "   - Squid Proxy	: 3128, 8080 (limit to IP Server)"  | tee -a log-install.txt
+echo "   - Squid Proxy	: 3128, 8080 ,8000 (limit to IP Server)"  | tee -a log-install.txt
 echo "   - Nginx		: 80"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
@@ -419,7 +424,7 @@ echo "   To display list of commands: menu"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Important Information"  | tee -a log-install.txt
-echo "   - Download Config OpenVPN : http://$MYIP/configs.zip"  | tee -a log-install.txt
+echo "   - Download Config OpenVPN : http://$MYIP/client.ovpn"  | tee -a log-install.txt
 echo "   - Installation Log        : cat /root/log-install.txt"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "   - Webmin                  : http://$MYIP:10000/"  | tee -a log-install.txt
