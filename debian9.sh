@@ -83,8 +83,8 @@ refresh_pattern ^gopher: 1440 0% 1440
 refresh_pattern -i (/cgi-bin/|\?) 0 0% 0
 refresh_pattern . 0 20% 4320
 visible_hostname PRAiman
-sed -i $MYIP2 /etc/squid/squid.conf;
 END
+sed -i $MYIP2 /etc/squid/squid.conf;
 
 # install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
