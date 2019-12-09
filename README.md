@@ -28,6 +28,18 @@
 <pre>wget https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/debian9.sh && chmod +x debian9.sh && ./debian9.sh
 </pre></p>
 
+<h3 align="center">How To Edit Index By PR Aiman</h3>
+
+<p align="center">
+<pre>nano /home/vps/public_html/index.html
+</pre></p>
+
+<h3 align="center">How To Edit Issue.net By PR Aiman</h3>
+
+<p align="center">
+<pre>nano /etc/issue.net
+</pre></p>
+
 <h3 align="center">Additional Info</h3>
 <p align="center">
 Recommended OS: Debian 9 Stretch x64
