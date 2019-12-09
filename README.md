@@ -27,7 +27,7 @@
 <p align="center">
 <pre>wget https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/debian9.sh && chmod +x debian9.sh && ./debian9.sh
 </pre></p>
-
+After Install Please Reboot Before Used
 <h3 align="center">How To Edit Index.html By PR Aiman</h3>
 
 <p align="center">
