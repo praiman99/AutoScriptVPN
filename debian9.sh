@@ -9,6 +9,15 @@ apt update
 apt upgrade -y
 apt install openvpn nginx php7.0-fpm stunnel4 dropbear easy-rsa vnstat ufw build-essential fail2ban zip -y
 
+#Check Curl
+if [ ! -e /usr/bin/curl ]; then
+	if [[ "$OS" = 'debian' ]]; then
+	apt-get -y update && apt-get -y install curl
+	else
+	apt update && apt install curl
+	fi
+fi
+
 # initializing var
 MYIP=`ifconfig eth0 | awk 'NR==2 {print $2}'`
 MYIP2="s/xxxxxxxxx/$MYIP/g";
@@ -180,7 +189,7 @@ auth-user-pass
 client
 dev tun
 proto tcp
-remote $MYIP:1194
+remote $MYIP 1194
 persist-key
 persist-tun
 pull
