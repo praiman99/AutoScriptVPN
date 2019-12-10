@@ -343,7 +343,7 @@ cp /var/www/html/index.nginx-debian.html /home/vps/public_html/index.html
 
 # Remodified Index By PR Aiman
 rm /home/vps/public_html/index.html
-wget -O /home/vps/public_html/index.html https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Files/Others/index.html
+wget -O /home/vps/public_html/index.html https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Files/Style01/index.html
 clear
 
 # Create and Configure rc.local
