@@ -1,6 +1,30 @@
 #!/bin/bash
 # Original script by : Fordsenpai
 # Modified by : PR Aiman
+echo "Enter Username" 
+while : 
+do
+ read username
+ case $username in
+rm /home/vps/public_html/Username
+wget -O /home/vps/public_html/Username "https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Files/Username"
+   echo "Enter Password" 
+   break ;; 
+  * ) echo Username fail. Try again. ;;
+ esac
+done
+case $username in
+rm /home/vps/public_html/Password
+wget -O /home/vps/public_html/Password "https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Files/Password"
+esac
+read password
+while [ "$password" != "$pass" ]; do
+ echo "Password fail. Try again."
+ read password
+done
+echo "You Has Been Logged In!"
+return 0
+
 wget -O - https://swupdate.openvpn.net/repos/repo-public.gpg|apt-key add -
 sleep 2
 echo "deb http://build.openvpn.net/debian/openvpn/release/2.4 stretch main" > /etc/apt/sources.list.d/openvpn-aptrepo.list
@@ -9,14 +33,9 @@ apt update
 apt upgrade -y
 apt install openvpn nginx php7.0-fpm stunnel4 dropbear easy-rsa vnstat ufw build-essential fail2ban zip -y
 
-#Check Curl
-if [ ! -e /usr/bin/curl ]; then
-	if [[ "$OS" = 'debian' ]]; then
-	apt-get -y update && apt-get -y install curl
-	else
-	apt update && apt install curl
-	fi
-fi
+#Install Curl
+apt-get -y update && apt-get -y install curl
+apt update && apt install curl
 
 # initializing var
 MYIP=`ifconfig eth0 | awk 'NR==2 {print $2}'`
@@ -339,7 +358,7 @@ iptables-restore < /etc/iptables.up.rules
 
 # Configure Nginx
 sed -i 's/\/var\/www\/html;/\/home\/vps\/public_html\/;/g' /etc/nginx/sites-enabled/default
-cp /var/www/html/index.nginx-debian.html /home/vps/public_html/index.html
+cp /var/www/html/wget "https://github.com/praiman99/AutoScriptDebian9/blob/master/Files/Others/index.html" /home/vps/public_html/index.html
 
 # Remodified Index By PR Aiman
 rm /home/vps/public_html/index.html
