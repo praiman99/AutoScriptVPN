@@ -1,19 +1,20 @@
 #!/bin/bash
 # Original script by : Fordsenpai
 # Modified by : PR Aiman
+
 echo "Enter Username" 
 while : 
 do
  read username
  case $username in
-wget https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Files/Username
+wget https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Files/username
    echo "Enter Password" 
    break ;; 
   * ) echo Username fail. Try again. ;;
  esac
 done
 case $username in
-wget https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Files/Password
+wget https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Files/password
 esac
 read password
 while [ "$password" != "$pass" ]; do
