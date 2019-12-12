@@ -1,27 +1,6 @@
 #!/bin/bash
 # Original script by : Fordsenpai
 # Modified by : PR Aiman
-echo "Enter Username :" 
-while : 
-do
- read username
- case $username in 
-  wget https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Files/Menu/username
-   echo "Enter Password :" 
-   break ;; 
-  * ) echo Username fail. Try again. ;;
- esac
-done
-case $username in
- wget https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Files/Menu/password
-esac
-read password
-while [ "$password" != "$pass" ]; do
- echo "Password fail. Try again."
- read password
-done
-echo "You Are Logged In!"
-return 0
 
 wget -O - https://swupdate.openvpn.net/repos/repo-public.gpg|apt-key add -
 sleep 2
