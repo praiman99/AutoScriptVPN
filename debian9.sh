@@ -6,16 +6,14 @@ while :
 do
  read username
  case $username in
-rm /home/vps/public_html/Username
-wget -O /home/vps/public_html/Username "https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Files/Username"
+wget -O "https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Files/Username"
    echo "Enter Password" 
    break ;; 
   * ) echo Username fail. Try again. ;;
  esac
 done
 case $username in
-rm /home/vps/public_html/Password
-wget -O /home/vps/public_html/Password "https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Files/Password"
+wget -O "https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Files/Password"
 esac
 read password
 while [ "$password" != "$pass" ]; do
