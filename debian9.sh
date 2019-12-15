@@ -64,7 +64,7 @@ acl Safe_ports port 80
 acl Safe_ports port 21
 acl Safe_ports port 443
 acl Safe_ports port 442
-acl Safe_ports port 444
+acl Safe_ports port 445
 acl Safe_ports port 70
 acl Safe_ports port 210
 acl Safe_ports port 1025-65535
@@ -143,7 +143,7 @@ chmod +x /etc/openvpn/ca.crt
 tar -xzvf /root/plugin.tgz -C /usr/lib/openvpn/
 chmod +x /usr/lib/openvpn/*
 cat > /etc/openvpn/server.conf <<-END
-port 1194
+port 443
 proto tcp
 dev tun
 ca ca.crt
@@ -185,7 +185,7 @@ auth-user-pass
 client
 dev tun
 proto tcp
-remote $MYIP 1194
+remote $MYIP 443
 persist-key
 persist-tun
 pull
@@ -220,7 +220,7 @@ auth-user-pass
 client
 dev tun
 proto tcp
-remote 127.0.0.1 1194
+remote 127.0.0.1 443
 route $MYIP 255.255.255.255 net_gateway
 persist-key
 persist-tun
@@ -248,8 +248,8 @@ cat > /home/vps/public_html/stunnel.conf <<-END
 client = yes
 debug = 6
 [openvpn]
-accept = 127.0.0.1:1194
-connect = $MYIP:443
+accept = 127.0.0.1:443
+connect = $MYIP:445
 TIMEOUTclose = 0
 verify = 0
 sni = dns.wechat.com
@@ -265,8 +265,8 @@ socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
 client = no
 [openvpn]
-accept = 443
-connect = 127.0.0.1:1194
+accept = 445
+connect = 127.0.0.1:443
 cert = /etc/stunnel/stunnel.pem
 [dropbear]
 accept = 444
@@ -276,7 +276,7 @@ END
 
 #Setting UFW
 ufw allow ssh
-ufw allow 1194/tcp
+ufw allow 443/tcp
 sed -i 's|DEFAULT_INPUT_POLICY="DROP"|DEFAULT_INPUT_POLICY="ACCEPT"|' /etc/default/ufw
 sed -i 's|DEFAULT_FORWARD_POLICY="DROP"|DEFAULT_FORWARD_POLICY="ACCEPT"|' /etc/default/ufw
 
@@ -369,6 +369,16 @@ zip configs.zip client.ovpn OpenVPN-SSL.ovpn stunnel.conf
 # install libxml-parser
 apt-get install -y libxml-parser-perl
 
+#Install Badvpn
+sudo apt-get install wget screen
+cd
+wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/khairilg/script-jualan-ssh-vpn/master/conf/badvpn-udpgw64"
+sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.local
+sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.d/rc.local
+chmod +x /usr/bin/badvpn-udpgw
+screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300
+badvpn-udpgw --listen-addr 127.0.0.1:7300 > /dev/null &
+
 # finalizing
 vnstat -u -i eth0
 apt-get -y autoremove
@@ -407,10 +417,10 @@ echo "   - Auto-Reboot : [OFF]"  | tee -a log-install.txt
 echo "   - IPv6        : [OFF]"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Application & Port Information"  | tee -a log-install.txt
-echo "   - OpenVPN		: TCP 1194 "  | tee -a log-install.txt
-echo "   - OpenVPN-SSL	: 443 "  | tee -a log-install.txt
+echo "   - OpenVPN		: TCP 443 "  | tee -a log-install.txt
+echo "   - OpenVPN-SSL	: 445 "  | tee -a log-install.txt
 echo "   - Dropbear		: 442"  | tee -a log-install.txt
-echo "   - Stunnel  	: 444"  | tee -a log-install.txt
+echo "   - Stunnel  	 : 444"  | tee -a log-install.txt
 echo "   - Squid Proxy	: 3128, 8080 ,8000 (limit to IP Server)"  | tee -a log-install.txt
 echo "   - Nginx		: 80"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
