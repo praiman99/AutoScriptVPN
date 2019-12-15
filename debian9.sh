@@ -65,6 +65,7 @@ acl Safe_ports port 21
 acl Safe_ports port 443
 acl Safe_ports port 442
 acl Safe_ports port 445
+acl Safe_ports port 444
 acl Safe_ports port 70
 acl Safe_ports port 210
 acl Safe_ports port 1025-65535
