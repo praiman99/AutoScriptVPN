@@ -94,7 +94,7 @@ sed -i $MYIP2 /etc/squid/squid.conf;
 
 # install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=442/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=443/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 
 # setting banner
@@ -144,7 +144,7 @@ chmod +x /etc/openvpn/ca.crt
 tar -xzvf /root/plugin.tgz -C /usr/lib/openvpn/
 chmod +x /usr/lib/openvpn/*
 cat > /etc/openvpn/server.conf <<-END
-port 443
+port 465
 proto tcp
 dev tun
 ca ca.crt
@@ -186,7 +186,7 @@ auth-user-pass
 client
 dev tun
 proto tcp
-remote $MYIP 443
+remote $MYIP 465
 persist-key
 persist-tun
 pull
@@ -221,7 +221,7 @@ auth-user-pass
 client
 dev tun
 proto tcp
-remote 127.0.0.1 443
+remote 127.0.0.1 465
 route $MYIP 255.255.255.255 net_gateway
 persist-key
 persist-tun
@@ -249,11 +249,11 @@ cat > /home/vps/public_html/stunnel.conf <<-END
 client = yes
 debug = 6
 [openvpn]
-accept = 127.0.0.1:443
+accept = 127.0.0.1:465
 connect = $MYIP:445
 TIMEOUTclose = 0
 verify = 0
-sni = dns.wechat.com
+sni = 
 END
 
 # Configure Stunnel
@@ -271,7 +271,7 @@ connect = 127.0.0.1:443
 cert = /etc/stunnel/stunnel.pem
 [dropbear]
 accept = 444
-connect = 127.0.0.1:442
+connect = 127.0.0.1:443
 cert = /etc/stunnel/stunnel.pem
 END
 
