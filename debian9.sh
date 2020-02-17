@@ -144,7 +144,7 @@ chmod +x /etc/openvpn/ca.crt
 tar -xzvf /root/plugin.tgz -C /usr/lib/openvpn/
 chmod +x /usr/lib/openvpn/*
 cat > /etc/openvpn/server.conf <<-END
-port 443
+port 1194
 proto tcp
 dev tun
 ca ca.crt
@@ -186,7 +186,7 @@ auth-user-pass
 client
 dev tun
 proto tcp
-remote $MYIP 443
+remote $MYIP 1194
 persist-key
 persist-tun
 pull
@@ -221,7 +221,7 @@ auth-user-pass
 client
 dev tun
 proto tcp
-remote 127.0.0.1 443
+remote 127.0.0.1 445
 route $MYIP 255.255.255.255 net_gateway
 persist-key
 persist-tun
@@ -253,7 +253,7 @@ accept = 127.0.0.1:443
 connect = $MYIP:445
 TIMEOUTclose = 0
 verify = 0
-sni = 
+sni = dns.wechat.com
 END
 
 # Configure Stunnel
