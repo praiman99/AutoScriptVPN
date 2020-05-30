@@ -25,7 +25,7 @@ wget "https://github.com/praiman99/AutoScriptDebian9/raw/master/Files/Menu/bashm
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 
 # set time GMT +8
-ln -fs /usr/share/zoneinfo/Asia/Manila /etc/localtime
+ln -fs /usr/share/zoneinfo/Asia/Malaysia /etc/localtime
 
 # install webmin
 cd
@@ -410,7 +410,7 @@ echo "                                   -PR Aiman-                             
 echo "================================================================================"
 echo ""  | tee -a log-install.txt
 echo "Server Information"  | tee -a log-install.txt
-echo "   - Timezone    : Asia/Manila (GMT +8)"  | tee -a log-install.txt
+echo "   - Timezone    : Asia/Malaysia (GMT +8)"  | tee -a log-install.txt
 echo "   - Fail2Ban    : [ON]"  | tee -a log-install.txt
 echo "   - IPtables    : [ON]"  | tee -a log-install.txt
 echo "   - Auto-Reboot : [OFF]"  | tee -a log-install.txt
