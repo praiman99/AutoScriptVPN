@@ -44,16 +44,6 @@ chmod +x /usr/bin/screenfetch
 echo "clear" >> .profile
 echo "screenfetch" >> .profile
 
-# Install DDOS Deflate
-cd
-apt-get -y install dnsutils dsniff
-wget "https://github.com/praiman99/AutoScriptDebian9/raw/master/Files/Others/ddos-deflate-master.zip"
-unzip ddos-deflate-master.zip
-cd ddos-deflate-master
-./install.sh
-cd
-rm -rf ddos-deflate-master.zip
-
 # install squid3
 apt-get install squid3
 cat > /etc/squid/squid.conf <<-END
@@ -277,7 +267,7 @@ END
 
 #Setting UFW
 ufw allow ssh
-ufw allow 443/tcp
+ufw allow 1194/tcp
 sed -i 's|DEFAULT_INPUT_POLICY="DROP"|DEFAULT_INPUT_POLICY="ACCEPT"|' /etc/default/ufw
 sed -i 's|DEFAULT_FORWARD_POLICY="DROP"|DEFAULT_FORWARD_POLICY="ACCEPT"|' /etc/default/ufw
 
@@ -380,6 +370,16 @@ chmod +x /usr/bin/badvpn-udpgw
 screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300
 badvpn-udpgw --listen-addr 127.0.0.1:7300 > /dev/null &
 
+# Install DDOS Deflate
+cd
+apt-get -y install dnsutils dsniff
+wget "https://github.com/praiman99/AutoScriptDebian9/raw/master/Files/Others/ddos-deflate-master.zip"
+unzip ddos-deflate-master.zip
+cd ddos-deflate-master
+./install.sh
+cd
+rm -rf ddos-deflate-master.zip
+
 # finalizing
 vnstat -u -i eth0
 apt-get -y autoremove
@@ -388,7 +388,7 @@ service nginx start
 service php7.0-fpm start
 service vnstat restart
 service openvpn restart
-service dropbear restart
+/etc/init.d/dropbear restart
 service fail2ban restart
 service squid restart
 
