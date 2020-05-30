@@ -418,10 +418,10 @@ echo "   - Auto-Reboot : [OFF]"  | tee -a log-install.txt
 echo "   - IPv6        : [OFF]"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Application & Port Information"  | tee -a log-install.txt
-echo "   - OpenVPN		: TCP 443 "  | tee -a log-install.txt
+echo "   - OpenVPN		: TCP 1194 "  | tee -a log-install.txt
 echo "   - OpenVPN-SSL	: 445 "  | tee -a log-install.txt
 echo "   - Dropbear		: 442"  | tee -a log-install.txt
-echo "   - Stunnel  	 : 444"  | tee -a log-install.txt
+echo "   - Stunnel  	 : 443"  | tee -a log-install.txt
 echo "   - Squid Proxy	: 3128, 8080 ,8000 (limit to IP Server)"  | tee -a log-install.txt
 echo "   - Nginx		: 80"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
