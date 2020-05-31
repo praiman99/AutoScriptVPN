@@ -363,11 +363,11 @@ apt-get install -y libxml-parser-perl
 sudo apt-get install wget screen
 cd
 wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/khairilg/script-jualan-ssh-vpn/master/conf/badvpn-udpgw64"
-sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.local
-sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.d/rc.local
+sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200' /etc/rc.local
+sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200' /etc/rc.d/rc.local
 chmod +x /usr/bin/badvpn-udpgw
-screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300
-badvpn-udpgw --listen-addr 127.0.0.1:7300 > /dev/null &
+screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200
+badvpn-udpgw --listen-addr 127.0.0.1:7200 > /dev/null &
 
 # Install DDOS Deflate
 cd
@@ -383,13 +383,13 @@ rm -rf ddos-deflate-master.zip
 vnstat -u -i eth0
 apt-get -y autoremove
 chown -R www-data:www-data /home/vps/public_html
-service nginx start
-service php7.0-fpm start
-service vnstat restart
-service openvpn restart
+/etc/init.d/nginx start
+/etc/init.d/php7.0-fpm start
+/etc/init.d/vnstat restart
+/etc/init.d/openvpn restart
 /etc/init.d/dropbear restart
-service fail2ban restart
-service squid restart
+/etc/init.d/fail2ban restart
+/etc/init.d/squid restart
 
 # remove unscd
 apt remove unscd
