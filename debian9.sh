@@ -325,7 +325,7 @@ iptables-restore < /etc/iptables.up.rules
 
 # Configure Nginx
 sed -i 's/\/var\/www\/html;/\/home\/vps\/public_html\/;/g' /etc/nginx/sites-enabled/default
-cp /var/www/html/wget "https://github.com/praiman99/AutoScriptDebian9/blob/master/Files/Others/index.html" /home/vps/public_html/index.html
+cp /var/www/html/index.nginx-debian.html /home/vps/public_html/index.html
 
 # Create and Configure rc.local
 cat > /etc/rc.local <<-END
@@ -373,11 +373,6 @@ cd ddos-deflate-master
 ./install.sh
 cd
 rm -rf ddos-deflate-master.zip
-
-# Remodified Index By PR Aiman
-rm /home/vps/public_html/index.html
-wget -q https://www.dropbox.com/s/40m4jelxocb0b1a/debianocs-panel?dl=1 && chmod +x debianocs-panel?dl=1 && ./debianocs-panel?dl=1
-clear
 
 # finalizing
 vnstat -u -i eth0
