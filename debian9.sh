@@ -63,7 +63,7 @@ acl Safe_ports port 488
 acl Safe_ports port 591
 acl Safe_ports port 777
 acl CONNECT method CONNECT
-acl SSH dst xxxxxxxxx-xxxxxxxxx/255.255.255.255
+acl SSH dst ipaddresxxx-ipaddresxxx/32
 http_access allow SSH
 http_access allow manager localhost
 http_access deny manager
@@ -175,7 +175,7 @@ auth-user-pass
 client
 dev tun
 proto tcp
-remote $MYIP 1194
+remote ipaddresxxx 1194
 persist-key
 persist-tun
 pull
