@@ -63,7 +63,7 @@ acl Safe_ports port 488
 acl Safe_ports port 591
 acl Safe_ports port 777
 acl CONNECT method CONNECT
-acl SSH dst ipaddresxxx-ipaddresxxx/32
+acl SSH dst xxxxxxxxx-xxxxxxxxx/255.255.255.255
 http_access allow SSH
 http_access allow manager localhost
 http_access deny manager
@@ -71,6 +71,7 @@ http_access allow localhost
 http_access deny all
 http_port 3128
 http_port 8000
+http_port 8888
 http_port 8080
 coredump_dir /var/spool/squid3
 refresh_pattern ^ftp: 1440 20% 10080
@@ -133,7 +134,7 @@ chmod +x /etc/openvpn/ca.crt
 tar -xzvf /root/plugin.tgz -C /usr/lib/openvpn/
 chmod +x /usr/lib/openvpn/*
 cat > /etc/openvpn/server.conf <<-END
-port 1194
+port 55
 proto tcp
 dev tun
 ca ca.crt
@@ -175,7 +176,7 @@ auth-user-pass
 client
 dev tun
 proto tcp
-remote ipaddresxxx 1194
+remote $MYIP 55
 persist-key
 persist-tun
 pull
@@ -266,7 +267,7 @@ END
 
 #Setting UFW
 ufw allow ssh
-ufw allow 1194/tcp
+ufw allow 55/tcp
 sed -i 's|DEFAULT_INPUT_POLICY="DROP"|DEFAULT_INPUT_POLICY="ACCEPT"|' /etc/default/ufw
 sed -i 's|DEFAULT_FORWARD_POLICY="DROP"|DEFAULT_FORWARD_POLICY="ACCEPT"|' /etc/default/ufw
 
@@ -299,8 +300,8 @@ COMMIT
 -A INPUT -p tcp --dport 443  -m state --state NEW -j ACCEPT
 -A INPUT -p tcp --dport 444  -m state --state NEW -j ACCEPT
 -A INPUT -p tcp --dport 587  -m state --state NEW -j ACCEPT
--A INPUT -p tcp --dport 1194  -m state --state NEW -j ACCEPT
--A INPUT -p udp --dport 1194  -m state --state NEW -j ACCEPT
+-A INPUT -p tcp --dport 55  -m state --state NEW -j ACCEPT
+-A INPUT -p udp --dport 55  -m state --state NEW -j ACCEPT
 -A INPUT -p tcp --dport 3355  -m state --state NEW -j ACCEPT
 -A INPUT -p udp --dport 3355  -m state --state NEW -j ACCEPT
 -A INPUT -p tcp --dport 8085  -m state --state NEW -j ACCEPT
@@ -412,11 +413,11 @@ echo "   - Auto-Reboot : [OFF]"  | tee -a log-install.txt
 echo "   - IPv6        : [OFF]"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Application & Port Information"  | tee -a log-install.txt
-echo "   - OpenVPN		: TCP 1194 "  | tee -a log-install.txt
+echo "   - OpenVPN		: TCP 55 "  | tee -a log-install.txt
 echo "   - OpenVPN-SSL	: 445 "  | tee -a log-install.txt
 echo "   - Dropbear		: 442"  | tee -a log-install.txt
 echo "   - Stunnel  	 : 443"  | tee -a log-install.txt
-echo "   - Squid Proxy	: 3128, 8080 ,8000 (limit to IP Server)"  | tee -a log-install.txt
+echo "   - Squid Proxy	: 3128, 8080 ,8000 , 8888 (limit to IP Server)"  | tee -a log-install.txt
 echo "   - Nginx		: 80"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
