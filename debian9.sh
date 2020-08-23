@@ -64,6 +64,9 @@ acl Safe_ports port 591
 acl Safe_ports port 777
 acl CONNECT method CONNECT
 acl SSH dst xxxxxxxxx-xxxxxxxxx/255.255.255.255
+acl SSH dst 51.79.157.58-51.79.157.58/32
+acl SSH dst 128.199.221.58-128.199.221.58/32
+acl SSH dst 124.217.230.188-124.217.230.188/32
 http_access allow SSH
 http_access allow manager localhost
 http_access deny manager
@@ -385,7 +388,6 @@ chown -R www-data:www-data /home/vps/public_html
 /etc/init.d/openvpn restart
 /etc/init.d/dropbear restart
 /etc/init.d/fail2ban restart
-/etc/init.d/squid restart
 
 # remove unscd
 apt remove unscd
