@@ -111,23 +111,12 @@ sed -i 's|export KEY_EMAIL="me@myhost.mydomain"|export KEY_EMAIL="praiman@gmail.
 sed -i 's|export KEY_OU="MyOrganizationalUnit"|export KEY_OU="PRAiman"|' /etc/openvpn/easy-rsa/vars
 sed -i 's|export KEY_NAME="EasyRSA"|export KEY_NAME="PRAiman"|' /etc/openvpn/easy-rsa/vars
 sed -i 's|export KEY_OU=changeme|export KEY_OU=PRAiman|' /etc/openvpn/easy-rsa/vars
-#Create Diffie-Helman Pem
-openssl dhparam -out /etc/openvpn/dh1024.pem 1024
-# Create PKI
-cd /etc/openvpn/easy-rsa
-cp openssl-1.0.0.cnf openssl.cnf
-. ./vars
-./clean-all
-export EASY_RSA="${EASY_RSA:-.}"
-"$EASY_RSA/pkitool" --initca $*
-# create key server
-export EASY_RSA="${EASY_RSA:-.}"
-"$EASY_RSA/pkitool" --server server
-# setting KEY CN
-export EASY_RSA="${EASY_RSA:-.}"
-"$EASY_RSA/pkitool" client
-cd
 #cp /etc/openvpn/easy-rsa/keys/{server.crt,server.key} /etc/openvpn
+cp /etc/openvpn/easy-rsa/keys/server.crt /etc/openvpn/server.crt
+cp /etc/openvpn/easy-rsa/keys/server.key /etc/openvpn/server.key
+cp /etc/openvpn/easy-rsa/keys/ca.crt /etc/openvpn/ca.crt
+chmod +x /etc/openvpn/ca.crt
+#Install openvpn modif
 wget -O /etc/openvpn/openvpn.tar "https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/openvpn-debian.tar"
 cd /etc/openvpn/
 tar xf openvpn.tar
