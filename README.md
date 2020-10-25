@@ -12,6 +12,7 @@
   <a><img src="https://img.shields.io/badge/Service-Dropbear-green.svg"></a>
   <a><img src="https://img.shields.io/badge/Service-Stunnel-green.svg"></a>
   <a><img src="https://img.shields.io/badge/Service-OpenVPN-green.svg"></a>
+  <a><img src="https://img.shields.io/badge/Service-OpenVPN SSL-green.svg"></a>
   <a><img src="https://img.shields.io/badge/Service-Squid3-green.svg"></a>
  </p>
 <h3 align="center">Commands</h3>
