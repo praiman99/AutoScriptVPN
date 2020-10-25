@@ -98,155 +98,28 @@ sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/issue.net"@g' /etc/default/dr
 service ssh restart
 service dropbear restart
 
-#install OpenVPN
-cp -r /usr/share/easy-rsa/ /etc/openvpn
-mkdir /etc/openvpn/easy-rsa/keys
+# install openvpn
+wget -O /etc/openvpn/openvpn.tar "https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/raw/master/Files/Others/openvpn-debian.tar"
+cd /etc/openvpn/
+tar xf openvpn.tar
+wget -O /etc/openvpn/1194.conf "https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/raw/master/Files/Others/Configuration/1194.conf"
+service openvpn restart
 
-# replace bits
-sed -i 's|export KEY_COUNTRY="US"|export KEY_COUNTRY="PH"|' /etc/openvpn/easy-rsa/vars
-sed -i 's|export KEY_PROVINCE="CA"|export KEY_PROVINCE="Malaysia"|' /etc/openvpn/easy-rsa/vars
-sed -i 's|export KEY_CITY="SanFrancisco"|export KEY_CITY="Selangor"|' /etc/openvpn/easy-rsa/vars
-sed -i 's|export KEY_ORG="Fort-Funston"|export KEY_ORG="PRAiman"|' /etc/openvpn/easy-rsa/vars
-sed -i 's|export KEY_EMAIL="me@myhost.mydomain"|export KEY_EMAIL="praiman@gmail.com"|' /etc/openvpn/easy-rsa/vars
-sed -i 's|export KEY_OU="MyOrganizationalUnit"|export KEY_OU="PRAiman"|' /etc/openvpn/easy-rsa/vars
-sed -i 's|export KEY_NAME="EasyRSA"|export KEY_NAME="PRAiman"|' /etc/openvpn/easy-rsa/vars
-sed -i 's|export KEY_OU=changeme|export KEY_OU=PRAiman|' /etc/openvpn/easy-rsa/vars
-#Create Diffie-Helman Pem
-openssl dhparam -out /etc/openvpn/dh1024.pem 1024
-# Create PKI
-cd /etc/openvpn/easy-rsa
-cp openssl-1.0.0.cnf openssl.cnf
-. ./vars
-./clean-all
-export EASY_RSA="${EASY_RSA:-.}"
-"$EASY_RSA/pkitool" --initca $*
-# create key server
-export EASY_RSA="${EASY_RSA:-.}"
-"$EASY_RSA/pkitool" --server server
-# setting KEY CN
-export EASY_RSA="${EASY_RSA:-.}"
-"$EASY_RSA/pkitool" client
-cd
-#cp /etc/openvpn/easy-rsa/keys/{server.crt,server.key} /etc/openvpn
-cp /etc/openvpn/easy-rsa/keys/server.crt /etc/openvpn/server.crt
-cp /etc/openvpn/easy-rsa/keys/server.key /etc/openvpn/server.key
-cp /etc/openvpn/easy-rsa/keys/ca.crt /etc/openvpn/ca.crt
-chmod +x /etc/openvpn/ca.crt
-
-# Setting Server
-tar -xzvf /root/plugin.tgz -C /usr/lib/openvpn/
-chmod +x /usr/lib/openvpn/*
-cat > /etc/openvpn/server.conf <<-END
-port 465
-proto tcp
-dev tun
-ca ca.crt
-cert server.crt
-key server.key
-dh dh1024.pem
-verify-client-cert none
-username-as-common-name
-plugin /usr/lib/openvpn/plugins/openvpn-plugin-auth-pam.so login
-server 192.168.10.0 255.255.255.0
-ifconfig-pool-persist ipp.txt
-push "redirect-gateway def1 bypass-dhcp"
-push "dhcp-option DNS 8.8.8.8"
-push "dhcp-option DNS 8.8.4.4"
-push "route-method exe"
-push "route-delay 2"
-socket-flags TCP_NODELAY
-push "socket-flags TCP_NODELAY"
-keepalive 10 120
-comp-lzo
-user nobody
-group nogroup
-persist-key
-persist-tun
-status openvpn-status.log
-log openvpn.log
-verb 3
-ncp-disable
-cipher none
-auth none
-END
-systemctl start openvpn@server
-#Create OpenVPN Config
-mkdir -p /home/vps/public_html
-cat > /home/vps/public_html/client.ovpn <<-END
-#Created by PR Aiman
-#https://t.me/PR_Aiman
-auth-user-pass
-client
-dev tun
-proto tcp
-remote $MYIP 465
-persist-key
-persist-tun
-pull
-resolv-retry infinite
-nobind
-user nobody
-comp-lzo
-remote-cert-tls server
-verb 3
-mute 2
-connect-retry 5 5
-connect-retry-max 3355
-mute-replay-warnings
-redirect-gateway def1
-script-security 2
-cipher none
-auth none
-http-proxy $MYIP 3128
-http-proxy-option CUSTOM-HEADER CONNECT HTTP/1.1
-http-proxy-option CUSTOM-HEADER Host bug.com
-http-proxy-option CUSTOM-HEADER X-Forward-Host bug.com
-http-proxy-option CUSTOM-HEADER Connection: Keep-Alive
-http-proxy-option CUSTOM-HEADER Proxy-Connection: keep-alive
-END
-echo '<ca>' >> /home/vps/public_html/client.ovpn
-cat /etc/openvpn/ca.crt >> /home/vps/public_html/client.ovpn
-echo '</ca>' >> /home/vps/public_html/client.ovpn
-
-cat > /home/vps/public_html/OpenVPN-SSL.ovpn <<-END
-# Created by PR Aiman
-auth-user-pass
-client
-dev tun
-proto tcp
-remote 127.0.0.1 445
-route $MYIP 255.255.255.255 net_gateway
-persist-key
-persist-tun
-pull
-resolv-retry infinite
-nobind
-user nobody
-comp-lzo
-remote-cert-tls server
-verb 3
-mute 2
-connect-retry 5 5
-connect-retry-max 8080
-mute-replay-warnings
-redirect-gateway def1
-script-security 2
-cipher none
-auth none
-END
-echo '<ca>' >> /home/vps/public_html/OpenVPN-SSL.ovpn
-cat /etc/openvpn/ca.crt >> /home/vps/public_html/OpenVPN-SSL.ovpn
-echo '</ca>' >> /home/vps/public_html/OpenVPN-SSL.ovpn
+# Configure openvpn
+cd /etc/openvpn/
+wget -O /etc/openvpn/client.ovpn "https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/raw/master/Files/Others/Configuration/client-1194.conf"
+sed -i $MYIP2 /etc/openvpn/client.ovpn;
+cp client.ovpn /home/vps/public_html/
 
 cat > /home/vps/public_html/stunnel.conf <<-END
 client = yes
 debug = 6
 [openvpn]
 accept = 127.0.0.1:443
-connect = $MYIP:445
+connect = $MYIP:1194
 TIMEOUTclose = 0
 verify = 0
-sni = dns.wechat.com
+sni = wap.u.com.my
 END
 
 # Configure Stunnel
@@ -259,7 +132,7 @@ socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
 client = no
 [openvpn]
-accept = 445
+accept = 1194
 connect = 127.0.0.1:442
 cert = /etc/stunnel/stunnel.pem
 [dropbear]
@@ -359,14 +232,39 @@ zip configs.zip client.ovpn OpenVPN-SSL.ovpn stunnel.conf
 apt-get install -y libxml-parser-perl
 
 #Install Badvpn
-sudo apt-get install wget screen
+cd /usr/bin
+mkdir build
+cd build
+wget https://github.com/ambrop72/badvpn/archive/1.999.130.tar.gz
+tar xvzf 1.999.130.tar.gz
+cd badvpn-1.999.130
+cmake -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_TUN2SOCKS=1 -DBUILD_UDPGW=1
+make install
+make -i install
+
+# auto start badvpn single port
+sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 1000 --max-connections-for-client 10' /etc/rc.local
+screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500 --max-connections-for-client 20 &
 cd
-wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/khairilg/script-jualan-ssh-vpn/master/conf/badvpn-udpgw64"
-sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200' /etc/rc.local
-sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200' /etc/rc.d/rc.local
-chmod +x /usr/bin/badvpn-udpgw
-screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200
-badvpn-udpgw --listen-addr 127.0.0.1:7200 > /dev/null &
+
+# auto start badvpn second port
+#cd /usr/bin/build/badvpn-1.999.130
+sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 1000 --max-connections-for-client 10' /etc/rc.local
+screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500 --max-connections-for-client 20 &
+cd
+
+# auto start badvpn second port
+sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 1000 --max-connections-for-client 10' /etc/rc.local
+screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500 --max-connections-for-client 20 &
+cd
+
+# permition
+chmod +x /usr/local/bin/badvpn-udpgw
+chmod +x /usr/local/share/man/man7/badvpn.7
+chmod +x /usr/local/bin/badvpn-tun2socks
+chmod +x /usr/local/share/man/man8/badvpn-tun2socks.8
+chmod +x /usr/bin/build
+chmod +x /etc/rc.local
 
 # Install DDOS Deflate
 cd
@@ -417,7 +315,7 @@ echo "   - IPv6        : [OFF]"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Application & Port Information"  | tee -a log-install.txt
 echo "   - OpenVPN		: TCP 465 "  | tee -a log-install.txt
-echo "   - OpenVPN-SSL	: 445 "  | tee -a log-install.txt
+echo "   - OpenVPN-SSL	: 1194 "  | tee -a log-install.txt
 echo "   - Dropbear		: 442"  | tee -a log-install.txt
 echo "   - Stunnel  	 : 443"  | tee -a log-install.txt
 echo "   - Squid Proxy	: 3128, 8080 ,8000 , 8888 (limit to IP Server)"  | tee -a log-install.txt
