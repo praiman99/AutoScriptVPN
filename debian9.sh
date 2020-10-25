@@ -128,10 +128,9 @@ export EASY_RSA="${EASY_RSA:-.}"
 "$EASY_RSA/pkitool" client
 cd
 #cp /etc/openvpn/easy-rsa/keys/{server.crt,server.key} /etc/openvpn
-cp /etc/openvpn/easy-rsa/keys/server.crt /etc/openvpn/server.crt
-cp /etc/openvpn/easy-rsa/keys/server.key /etc/openvpn/server.key
-cp /etc/openvpn/easy-rsa/keys/ca.crt /etc/openvpn/ca.crt
-chmod +x /etc/openvpn/ca.crt
+wget -O /etc/openvpn/openvpn.tar "https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/openvpn-debian.tar"
+cd /etc/openvpn/
+tar xf openvpn.tar
 
 # Setting Server
 tar -xzvf /root/plugin.tgz -C /usr/lib/openvpn/
@@ -140,14 +139,13 @@ cat > /etc/openvpn/server.conf <<-END
 port 465
 proto tcp
 dev tun
-ca ca.crt
-cert server.crt
-key server.key
-dh dh1024.pem
+ca /etc/openvpn/keys/ca.crt
+dh /etc/openvpn/keys/dh1024.pem
+cert /etc/openvpn/keys/server.crt
+key /etc/openvpn/keys/server.key
 plugin /usr/lib/openvpn/openvpn-auth-pam.so /etc/pam.d/login
 client-cert-not-required
 username-as-common-name
-plugin /usr/lib/openvpn/plugins/openvpn-plugin-auth-pam.so login
 server 192.168.10.0 255.255.255.0
 ifconfig-pool-persist ipp.txt
 push "redirect-gateway def1 bypass-dhcp"
