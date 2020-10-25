@@ -205,7 +205,7 @@ http-proxy-option CUSTOM-HEADER X-Forward-Host bug.com
 http-proxy-option CUSTOM-HEADER Connection: Keep-Alive
 http-proxy-option CUSTOM-HEADER Proxy-Connection: keep-alive
 END
-<ca>
+echo '<ca>' >> /home/vps/public_html/client.ovpn
 -----BEGIN CERTIFICATE-----
 MIID4DCCA0mgAwIBAgIJAM3S4jaLTQBoMA0GCSqGSIb3DQEBBQUAMIGnMQswCQYD
 VQQGEwJJRDERMA8GA1UECBMIV2VzdEphdmExDjAMBgNVBAcTBUJvZ29yMRQwEgYD
@@ -229,7 +229,7 @@ A4GBAL3ScsXaFFuBqkS8bDqDUkx2hYM2iAYx9ZEuz8DOgtenQiNcyety4YzWSE5b
 1/4JSlrO0hoFAZpz6tZtB9XM5efx5zSEIn+w4+2bWUk34Ro2zM3JxwDUp1tTcpbT
 T0G3VTuVrzgSMZV1unfbCHk6XR4VT3MmmoTl+97cmmMZgWV0
 -----END CERTIFICATE-----
-</ca>
+echo '</ca>' >> /home/vps/public_html/client.ovpn
 
 
 cat > /home/vps/public_html/OpenVPN-SSL.ovpn <<-END
@@ -260,7 +260,7 @@ script-security 2
 cipher none
 auth none
 END
-<ca>
+echo '<ca>' >> /home/vps/public_html/client.ovpn
 -----BEGIN CERTIFICATE-----
 MIID4DCCA0mgAwIBAgIJAM3S4jaLTQBoMA0GCSqGSIb3DQEBBQUAMIGnMQswCQYD
 VQQGEwJJRDERMA8GA1UECBMIV2VzdEphdmExDjAMBgNVBAcTBUJvZ29yMRQwEgYD
@@ -284,7 +284,7 @@ A4GBAL3ScsXaFFuBqkS8bDqDUkx2hYM2iAYx9ZEuz8DOgtenQiNcyety4YzWSE5b
 1/4JSlrO0hoFAZpz6tZtB9XM5efx5zSEIn+w4+2bWUk34Ro2zM3JxwDUp1tTcpbT
 T0G3VTuVrzgSMZV1unfbCHk6XR4VT3MmmoTl+97cmmMZgWV0
 -----END CERTIFICATE-----
-</ca>
+echo '</ca>' >> /home/vps/public_html/client.ovpn
 
 
 cat > /home/vps/public_html/stunnel.conf <<-END
