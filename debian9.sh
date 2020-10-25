@@ -98,25 +98,201 @@ sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/issue.net"@g' /etc/default/dr
 service ssh restart
 service dropbear restart
 
-# install openvpn
-wget -O /etc/openvpn/openvpn.tar "https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/raw/master/Files/Others/openvpn-debian.tar"
-cd /etc/openvpn/
-tar xf openvpn.tar
-wget -O /etc/openvpn/1194.conf "https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/raw/master/Files/Others/Configuration/1194.conf"
-service openvpn restart
+#install OpenVPN
+cp -r /usr/share/easy-rsa/ /etc/openvpn
+mkdir /etc/openvpn/easy-rsa/keys
 
-# Configure openvpn
-cd /etc/openvpn/
-wget -O /etc/openvpn/client.ovpn "https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/raw/master/Files/Others/Configuration/client-1194.conf"
-sed -i $MYIP2 /etc/openvpn/client.ovpn;
-cp client.ovpn /home/vps/public_html/
+# replace bits
+sed -i 's|export KEY_COUNTRY="US"|export KEY_COUNTRY="PH"|' /etc/openvpn/easy-rsa/vars
+sed -i 's|export KEY_PROVINCE="CA"|export KEY_PROVINCE="Malaysia"|' /etc/openvpn/easy-rsa/vars
+sed -i 's|export KEY_CITY="SanFrancisco"|export KEY_CITY="Selangor"|' /etc/openvpn/easy-rsa/vars
+sed -i 's|export KEY_ORG="Fort-Funston"|export KEY_ORG="PRAiman"|' /etc/openvpn/easy-rsa/vars
+sed -i 's|export KEY_EMAIL="me@myhost.mydomain"|export KEY_EMAIL="praiman@gmail.com"|' /etc/openvpn/easy-rsa/vars
+sed -i 's|export KEY_OU="MyOrganizationalUnit"|export KEY_OU="PRAiman"|' /etc/openvpn/easy-rsa/vars
+sed -i 's|export KEY_NAME="EasyRSA"|export KEY_NAME="PRAiman"|' /etc/openvpn/easy-rsa/vars
+sed -i 's|export KEY_OU=changeme|export KEY_OU=PRAiman|' /etc/openvpn/easy-rsa/vars
+#Create Diffie-Helman Pem
+openssl dhparam -out /etc/openvpn/dh1024.pem 1024
+# Create PKI
+cd /etc/openvpn/easy-rsa
+cp openssl-1.0.0.cnf openssl.cnf
+. ./vars
+./clean-all
+export EASY_RSA="${EASY_RSA:-.}"
+"$EASY_RSA/pkitool" --initca $*
+# create key server
+export EASY_RSA="${EASY_RSA:-.}"
+"$EASY_RSA/pkitool" --server server
+# setting KEY CN
+export EASY_RSA="${EASY_RSA:-.}"
+"$EASY_RSA/pkitool" client
+cd
+#cp /etc/openvpn/easy-rsa/keys/{server.crt,server.key} /etc/openvpn
+cp /etc/openvpn/easy-rsa/keys/server.crt /etc/openvpn/server.crt
+cp /etc/openvpn/easy-rsa/keys/server.key /etc/openvpn/server.key
+cp /etc/openvpn/easy-rsa/keys/ca.crt /etc/openvpn/ca.crt
+chmod +x /etc/openvpn/ca.crt
+
+# Setting Server
+tar -xzvf /root/plugin.tgz -C /usr/lib/openvpn/
+chmod +x /usr/lib/openvpn/*
+cat > /etc/openvpn/server.conf <<-END
+port 465
+proto tcp
+dev tun
+ca ca.crt
+cert server.crt
+key server.key
+dh dh1024.pem
+plugin /usr/lib/openvpn/openvpn-auth-pam.so /etc/pam.d/login
+client-cert-not-required
+username-as-common-name
+plugin /usr/lib/openvpn/plugins/openvpn-plugin-auth-pam.so login
+server 192.168.10.0 255.255.255.0
+ifconfig-pool-persist ipp.txt
+push "redirect-gateway def1 bypass-dhcp"
+push "dhcp-option DNS 8.8.8.8"
+push "dhcp-option DNS 8.8.4.4"
+push "route-method exe"
+push "route-delay 2"
+socket-flags TCP_NODELAY
+push "socket-flags TCP_NODELAY"
+keepalive 10 120
+comp-lzo
+user nobody
+group nogroup
+persist-key
+persist-tun
+status openvpn-status.log
+log openvpn.log
+verb 3
+ncp-disable
+cipher none
+auth none
+END
+systemctl start openvpn@server
+#Create OpenVPN Config
+mkdir -p /home/vps/public_html
+cat > /home/vps/public_html/client.ovpn <<-END
+#Created by PR Aiman
+#https://t.me/PR_Aiman
+auth-user-pass
+client
+dev tun
+proto tcp
+remote $MYIP 465
+persist-key
+persist-tun
+pull
+resolv-retry infinite
+nobind
+user nobody
+comp-lzo
+remote-cert-tls server
+verb 3
+mute 2
+connect-retry 5 5
+connect-retry-max 3355
+mute-replay-warnings
+redirect-gateway def1
+script-security 2
+cipher none
+auth none
+http-proxy $MYIP 3128
+http-proxy-option CUSTOM-HEADER CONNECT HTTP/1.1
+http-proxy-option CUSTOM-HEADER Host bug.com
+http-proxy-option CUSTOM-HEADER X-Forward-Host bug.com
+http-proxy-option CUSTOM-HEADER Connection: Keep-Alive
+http-proxy-option CUSTOM-HEADER Proxy-Connection: keep-alive
+END
+<ca>
+-----BEGIN CERTIFICATE-----
+MIID4DCCA0mgAwIBAgIJAM3S4jaLTQBoMA0GCSqGSIb3DQEBBQUAMIGnMQswCQYD
+VQQGEwJJRDERMA8GA1UECBMIV2VzdEphdmExDjAMBgNVBAcTBUJvZ29yMRQwEgYD
+VQQKEwtKdWFsU1NILmNvbTEUMBIGA1UECxMLSnVhbFNTSC5jb20xFDASBgNVBAMT
+C0p1YWxTU0guY29tMRQwEgYDVQQpEwtKdWFsU1NILmNvbTEdMBsGCSqGSIb3DQEJ
+ARYObWVAanVhbHNzaC5jb20wHhcNMTMxMTA4MTQwODA3WhcNMjMxMTA2MTQwODA3
+WjCBpzELMAkGA1UEBhMCSUQxETAPBgNVBAgTCFdlc3RKYXZhMQ4wDAYDVQQHEwVC
+b2dvcjEUMBIGA1UEChMLSnVhbFNTSC5jb20xFDASBgNVBAsTC0p1YWxTU0guY29t
+MRQwEgYDVQQDEwtKdWFsU1NILmNvbTEUMBIGA1UEKRMLSnVhbFNTSC5jb20xHTAb
+BgkqhkiG9w0BCQEWDm1lQGp1YWxzc2guY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GN
+ADCBiQKBgQDO0s4v72Y+V1z3XpkQD8hVjYyJk1PzpaNGpubtVXf7b/2vhvYBfE3X
+46NvpgQejsAI4rW7XWMZrAjFzQBPE0zDAt1O0ukvGRFvHr16jLuC3cZCn3oQJ0+v
+HD7Z16sUhKqLWRTGAf1LDvNR3eVmzzRfBF8L3h+ZGaQFW9gsw1tSSwIDAQABo4IB
+EDCCAQwwHQYDVR0OBBYEFA5gsoPi0yORhvAA38zCXOQhX4wYMIHcBgNVHSMEgdQw
+gdGAFA5gsoPi0yORhvAA38zCXOQhX4wYoYGtpIGqMIGnMQswCQYDVQQGEwJJRDER
+MA8GA1UECBMIV2VzdEphdmExDjAMBgNVBAcTBUJvZ29yMRQwEgYDVQQKEwtKdWFs
+U1NILmNvbTEUMBIGA1UECxMLSnVhbFNTSC5jb20xFDASBgNVBAMTC0p1YWxTU0gu
+Y29tMRQwEgYDVQQpEwtKdWFsU1NILmNvbTEdMBsGCSqGSIb3DQEJARYObWVAanVh
+bHNzaC5jb22CCQDN0uI2i00AaDAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBQUA
+A4GBAL3ScsXaFFuBqkS8bDqDUkx2hYM2iAYx9ZEuz8DOgtenQiNcyety4YzWSE5b
+1/4JSlrO0hoFAZpz6tZtB9XM5efx5zSEIn+w4+2bWUk34Ro2zM3JxwDUp1tTcpbT
+T0G3VTuVrzgSMZV1unfbCHk6XR4VT3MmmoTl+97cmmMZgWV0
+-----END CERTIFICATE-----
+</ca>
+
+
+cat > /home/vps/public_html/OpenVPN-SSL.ovpn <<-END
+# Created by PR Aiman
+auth-user-pass
+client
+dev tun
+plugin /usr/lib/openvpn/openvpn-auth-pam.so /etc/pam.d/login
+client-cert-not-required
+proto tcp
+remote 127.0.0.1 1194
+route $MYIP 255.255.255.255 net_gateway
+persist-key
+persist-tun
+pull
+resolv-retry infinite
+nobind
+user nobody
+comp-lzo
+remote-cert-tls server
+verb 3
+mute 2
+connect-retry 5 5
+connect-retry-max 8080
+mute-replay-warnings
+redirect-gateway def1
+script-security 2
+cipher none
+auth none
+END
+<ca>
+-----BEGIN CERTIFICATE-----
+MIID4DCCA0mgAwIBAgIJAM3S4jaLTQBoMA0GCSqGSIb3DQEBBQUAMIGnMQswCQYD
+VQQGEwJJRDERMA8GA1UECBMIV2VzdEphdmExDjAMBgNVBAcTBUJvZ29yMRQwEgYD
+VQQKEwtKdWFsU1NILmNvbTEUMBIGA1UECxMLSnVhbFNTSC5jb20xFDASBgNVBAMT
+C0p1YWxTU0guY29tMRQwEgYDVQQpEwtKdWFsU1NILmNvbTEdMBsGCSqGSIb3DQEJ
+ARYObWVAanVhbHNzaC5jb20wHhcNMTMxMTA4MTQwODA3WhcNMjMxMTA2MTQwODA3
+WjCBpzELMAkGA1UEBhMCSUQxETAPBgNVBAgTCFdlc3RKYXZhMQ4wDAYDVQQHEwVC
+b2dvcjEUMBIGA1UEChMLSnVhbFNTSC5jb20xFDASBgNVBAsTC0p1YWxTU0guY29t
+MRQwEgYDVQQDEwtKdWFsU1NILmNvbTEUMBIGA1UEKRMLSnVhbFNTSC5jb20xHTAb
+BgkqhkiG9w0BCQEWDm1lQGp1YWxzc2guY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GN
+ADCBiQKBgQDO0s4v72Y+V1z3XpkQD8hVjYyJk1PzpaNGpubtVXf7b/2vhvYBfE3X
+46NvpgQejsAI4rW7XWMZrAjFzQBPE0zDAt1O0ukvGRFvHr16jLuC3cZCn3oQJ0+v
+HD7Z16sUhKqLWRTGAf1LDvNR3eVmzzRfBF8L3h+ZGaQFW9gsw1tSSwIDAQABo4IB
+EDCCAQwwHQYDVR0OBBYEFA5gsoPi0yORhvAA38zCXOQhX4wYMIHcBgNVHSMEgdQw
+gdGAFA5gsoPi0yORhvAA38zCXOQhX4wYoYGtpIGqMIGnMQswCQYDVQQGEwJJRDER
+MA8GA1UECBMIV2VzdEphdmExDjAMBgNVBAcTBUJvZ29yMRQwEgYDVQQKEwtKdWFs
+U1NILmNvbTEUMBIGA1UECxMLSnVhbFNTSC5jb20xFDASBgNVBAMTC0p1YWxTU0gu
+Y29tMRQwEgYDVQQpEwtKdWFsU1NILmNvbTEdMBsGCSqGSIb3DQEJARYObWVAanVh
+bHNzaC5jb22CCQDN0uI2i00AaDAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBQUA
+A4GBAL3ScsXaFFuBqkS8bDqDUkx2hYM2iAYx9ZEuz8DOgtenQiNcyety4YzWSE5b
+1/4JSlrO0hoFAZpz6tZtB9XM5efx5zSEIn+w4+2bWUk34Ro2zM3JxwDUp1tTcpbT
+T0G3VTuVrzgSMZV1unfbCHk6XR4VT3MmmoTl+97cmmMZgWV0
+-----END CERTIFICATE-----
+</ca>
+
 
 cat > /home/vps/public_html/stunnel.conf <<-END
 client = yes
 debug = 6
 [openvpn]
 accept = 127.0.0.1:443
-connect = $MYIP:1194
+connect = $MYIP:445
 TIMEOUTclose = 0
 verify = 0
 sni = wap.u.com.my
