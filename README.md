@@ -43,7 +43,7 @@ Creadit To : https://github.com/TholhahZabri/AutoScriptDebianStretch (Orignal Sc
 
 Contact Me : https://t.me/PR_Aiman
 
-<h3 align="center">Thanks To ALLAH S.W.T Syukur Alhamdulillah bersyukur atas kepandaian dan kebijaksanaan yang telah di berikan daripada maha percipta. semoga segala urusan di masa akan datang dipermudahkan</h3>
+<h3 align="center">Thanks To ALLAH S.W.T Syukur Alhamdulillah bersyukur atas kepandaian dan kebijaksanaan yang telah di berikan daripada maha pencipta. semoga segala urusan di masa akan datang dipermudahkan</h3>
 
 <p align="center">
   <a><img src="https://img.shields.io/badge/Copyright%20©-PR%20Aiman%20AutoScriptDebian9%202020.%20All%20rights%20reserved...-green.svg" style="max-width:200%;">
