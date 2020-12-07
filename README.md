@@ -35,13 +35,13 @@ After Install Please Reboot Before Used
 <p align="center">
 <pre>wget https://github.com/praiman99/AutoScriptDebian9/master/Files/Plugins/ovpnmonitor.sh && chmod +x ovpnmonitor.sh && ./ovpnmonitor.sh
 </pre></p>
-OpenVPN Monitor Creadit To : https://github.com/MannyToledoJr/AutoScriptDS
-
 <h3 align="center">Additional Info</h3>
 <p align="center">
 Recommended OS: Debian 9 Stretch x64
 
 Creadit To : https://github.com/TholhahZabri/AutoScriptDebianStretch (Orignal Script)
+
+OpenVPN Monitor Creadit To : https://github.com/MannyToledoJr/AutoScriptDS
 
 Contact Me : https://t.me/PR_Aiman
 
