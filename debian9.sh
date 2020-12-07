@@ -111,15 +111,27 @@ sed -i 's|export KEY_EMAIL="me@myhost.mydomain"|export KEY_EMAIL="praiman@gmail.
 sed -i 's|export KEY_OU="MyOrganizationalUnit"|export KEY_OU="PRAiman"|' /etc/openvpn/easy-rsa/vars
 sed -i 's|export KEY_NAME="EasyRSA"|export KEY_NAME="PRAiman"|' /etc/openvpn/easy-rsa/vars
 sed -i 's|export KEY_OU=changeme|export KEY_OU=PRAiman|' /etc/openvpn/easy-rsa/vars
+#Create Diffie-Helman Pem
+openssl dhparam -out /etc/openvpn/dh1024.pem 1024
+# Create PKI
+cd /etc/openvpn/easy-rsa
+cp openssl-1.0.0.cnf openssl.cnf
+. ./vars
+./clean-all
+export EASY_RSA="${EASY_RSA:-.}"
+"$EASY_RSA/pkitool" --initca $*
+# create key server
+export EASY_RSA="${EASY_RSA:-.}"
+"$EASY_RSA/pkitool" --server server
+# setting KEY CN
+export EASY_RSA="${EASY_RSA:-.}"
+"$EASY_RSA/pkitool" client
+cd
 #cp /etc/openvpn/easy-rsa/keys/{server.crt,server.key} /etc/openvpn
 cp /etc/openvpn/easy-rsa/keys/server.crt /etc/openvpn/server.crt
 cp /etc/openvpn/easy-rsa/keys/server.key /etc/openvpn/server.key
 cp /etc/openvpn/easy-rsa/keys/ca.crt /etc/openvpn/ca.crt
 chmod +x /etc/openvpn/ca.crt
-#Install openvpn modif
-wget -O /etc/openvpn/openvpn.tar "https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/openvpn-debian.tar"
-cd /etc/openvpn/
-tar xf openvpn.tar
 
 # Setting Server
 tar -xzvf /root/plugin.tgz -C /usr/lib/openvpn/
@@ -128,13 +140,13 @@ cat > /etc/openvpn/server.conf <<-END
 port 465
 proto tcp
 dev tun
-ca /etc/openvpn/keys/ca.crt
-dh /etc/openvpn/keys/dh1024.pem
-cert /etc/openvpn/keys/server.crt
-key /etc/openvpn/keys/server.key
-plugin /usr/lib/openvpn/openvpn-auth-pam.so /etc/pam.d/login
-client-cert-not-required
+ca ca.crt
+cert server.crt
+key server.key
+dh dh1024.pem
+verify-client-cert none
 username-as-common-name
+plugin /usr/lib/openvpn/plugins/openvpn-plugin-auth-pam.so login
 server 192.168.10.0 255.255.255.0
 ifconfig-pool-persist ipp.txt
 push "redirect-gateway def1 bypass-dhcp"
@@ -161,8 +173,8 @@ systemctl start openvpn@server
 #Create OpenVPN Config
 mkdir -p /home/vps/public_html
 cat > /home/vps/public_html/client.ovpn <<-END
-#Created by PR Aiman
-#https://t.me/PR_Aiman
+# Created by PR Aiman
+# https:t.me/PR_Aiman
 auth-user-pass
 client
 dev tun
@@ -187,8 +199,8 @@ cipher none
 auth none
 http-proxy $MYIP 3128
 http-proxy-option CUSTOM-HEADER CONNECT HTTP/1.1
-http-proxy-option CUSTOM-HEADER Host bug.com
-http-proxy-option CUSTOM-HEADER X-Forward-Host bug.com
+http-proxy-option CUSTOM-HEADER Host www.viber.com
+http-proxy-option CUSTOM-HEADER X-Forward-Host www.viber.com
 http-proxy-option CUSTOM-HEADER Connection: Keep-Alive
 http-proxy-option CUSTOM-HEADER Proxy-Connection: keep-alive
 END
@@ -201,10 +213,8 @@ cat > /home/vps/public_html/OpenVPN-SSL.ovpn <<-END
 auth-user-pass
 client
 dev tun
-plugin /usr/lib/openvpn/openvpn-auth-pam.so /etc/pam.d/login
-client-cert-not-required
 proto tcp
-remote 127.0.0.1 1194
+remote 127.0.0.1 445
 route $MYIP 255.255.255.255 net_gateway
 persist-key
 persist-tun
@@ -229,14 +239,15 @@ cat /etc/openvpn/ca.crt >> /home/vps/public_html/OpenVPN-SSL.ovpn
 echo '</ca>' >> /home/vps/public_html/OpenVPN-SSL.ovpn
 
 cat > /home/vps/public_html/stunnel.conf <<-END
+
 client = yes
 debug = 6
 [openvpn]
-accept = 127.0.0.1:443
+accept = 127.0.0.1:465
 connect = $MYIP:445
 TIMEOUTclose = 0
 verify = 0
-sni = wap.u.com.my
+sni = bug.com
 END
 
 # Configure Stunnel
@@ -249,8 +260,8 @@ socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
 client = no
 [openvpn]
-accept = 1194
-connect = 127.0.0.1:442
+accept = 445
+connect = 127.0.0.1:465
 cert = /etc/stunnel/stunnel.pem
 [dropbear]
 accept = 443
@@ -292,9 +303,11 @@ COMMIT
 -A INPUT -p tcp --dport 442  -m state --state NEW -j ACCEPT
 -A INPUT -p tcp --dport 443  -m state --state NEW -j ACCEPT
 -A INPUT -p tcp --dport 444  -m state --state NEW -j ACCEPT
--A INPUT -p tcp --dport 587  -m state --state NEW -j ACCEPT
+-A INPUT -p tcp --dport 445  -m state --state NEW -j ACCEPT
 -A INPUT -p tcp --dport 55  -m state --state NEW -j ACCEPT
 -A INPUT -p udp --dport 55  -m state --state NEW -j ACCEPT
+-A INPUT -p tcp --dport 465  -m state --state NEW -j ACCEPT
+-A INPUT -p udp --dport 465  -m state --state NEW -j ACCEPT
 -A INPUT -p tcp --dport 3355  -m state --state NEW -j ACCEPT
 -A INPUT -p udp --dport 3355  -m state --state NEW -j ACCEPT
 -A INPUT -p tcp --dport 8085  -m state --state NEW -j ACCEPT
@@ -432,7 +445,7 @@ echo "   - IPv6        : [OFF]"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Application & Port Information"  | tee -a log-install.txt
 echo "   - OpenVPN		: TCP 465 "  | tee -a log-install.txt
-echo "   - OpenVPN-SSL	: 1194 "  | tee -a log-install.txt
+echo "   - OpenVPN-SSL	: 445 "  | tee -a log-install.txt
 echo "   - Dropbear		: 442"  | tee -a log-install.txt
 echo "   - Stunnel  	 : 443"  | tee -a log-install.txt
 echo "   - Squid Proxy	: 3128, 8080 ,8000 , 8888 (limit to IP Server)"  | tee -a log-install.txt
