@@ -1,4 +1,4 @@
-<h1 align="center"> VPS AutoScript Debian 9 <img src="https://img.shields.io/badge/Version-1.0-blue.svg"></h1>
+<h1 align="center"> VPS AutoScript Debian 9 <img src="https://img.shields.io/badge/Version-1.1-blue.svg"></h1>
 
 <p align="center">VPS AutoScript is made by FordSenpai Remodified by PR Aiman for Virtual Private Network</p>
 <h3 align="center">Supported Linux Distribution</h3>
