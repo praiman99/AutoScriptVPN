@@ -369,15 +369,10 @@ zip configs.zip client.ovpn OpenVPN-SSL.ovpn stunnel.conf
 apt-get install -y libxml-parser-perl
 
 #Install Badvpn
-cd /usr/bin
-mkdir build
-cd build
-wget https://github.com/ambrop72/badvpn/archive/1.999.130.tar.gz
-tar xvzf 1.999.130.tar.gz
-cd badvpn-1.999.130
-cmake -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_TUN2SOCKS=1 -DBUILD_UDPGW=1
-make install
-make -i install
+cwget -O /usr/bin/badvpn-udpgw "https://github.com/praiman99/AutoScriptDebian9/raw/master/Files/Plugins/badvpn-udpgw"
+if [ "$OS" == "x86_64" ]; then
+  wget -O /usr/bin/badvpn-udpgw "https://github.com/praiman99/AutoScriptDebian9/raw/master/Files/Plugins/badvpn-udpgw64"
+fi
 
 # auto start badvpn single port
 sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 1000 --max-connections-for-client 10' /etc/rc.local
@@ -385,7 +380,6 @@ screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500 
 cd
 
 # auto start badvpn second port
-#cd /usr/bin/build/badvpn-1.999.130
 sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 1000 --max-connections-for-client 10' /etc/rc.local
 screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500 --max-connections-for-client 20 &
 cd
