@@ -30,6 +30,11 @@
 <pre>wget https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/debian9.sh && chmod +x debian9.sh && ./debian9.sh
 </pre></p>
 After Install Please Reboot Before Used
+<h3 align="center">Installation OpenVPN-Monitor</h3>
+
+<p align="center">
+<pre>wget https://github.com/praiman99/AutoScriptDebian9/master/Files/Plugins/ovpnmonitor.sh && chmod +x ovpnmonitor.sh && ./ovpnmonitor.sh
+</pre></p>
 <h3 align="center">Additional Info</h3>
 <p align="center">
 Recommended OS: Debian 9 Stretch x64
