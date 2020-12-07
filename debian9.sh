@@ -336,6 +336,11 @@ iptables-restore < /etc/iptables.up.rules
 sed -i 's/\/var\/www\/html;/\/home\/vps\/public_html\/;/g' /etc/nginx/sites-enabled/default
 cp /var/www/html/index.nginx-debian.html /home/vps/public_html/index.html
 
+# Modified Index.html By PR Aiman
+rm /home/vps/public_html/index.html
+wget -O /home/vps/public_html/index.html https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Files/Style01/index.html
+clear
+
 # Create and Configure rc.local
 cat > /etc/rc.local <<-END
 #!/bin/sh -e
