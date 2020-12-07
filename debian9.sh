@@ -177,6 +177,8 @@ client
 dev tun
 proto tcp
 remote $MYIP 465
+http-proxy $MYIP 3128
+http-proxy-retry
 persist-key
 persist-tun
 pull
@@ -194,12 +196,15 @@ redirect-gateway def1
 script-security 2
 cipher none
 auth none
-http-proxy $MYIP 3128
-http-proxy-option CUSTOM-HEADER CONNECT HTTP/1.1
-http-proxy-option CUSTOM-HEADER Host www.viber.com
-http-proxy-option CUSTOM-HEADER X-Forward-Host www.viber.com
-http-proxy-option CUSTOM-HEADER Connection: Keep-Alive
-http-proxy-option CUSTOM-HEADER Proxy-Connection: keep-alive
+http-proxy-option VERSION 1.1
+http-proxy-option AGENT Chrome/80.0.3987.87
+http-proxy-option CUSTOM-HEADER Host bug.com
+http-proxy-option CUSTOM-HEADER X-Forward-Host bug.com
+http-proxy-option CUSTOM-HEADER X-Forwarded-For bug.com
+http-proxy-option CUSTOM-HEADER Referrer bug.com
+dhcp-option DNS 8.8.8.8
+dhcp-option DNS 8.8.4.4
+dhcp-option google.com
 END
 echo '<ca>' >> /home/vps/public_html/client.ovpn
 cat /etc/openvpn/ca.crt >> /home/vps/public_html/client.ovpn
