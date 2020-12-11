@@ -39,9 +39,9 @@ After Install Please Reboot Before Used
 <p align="center">
 Recommended OS: Debian 9 Stretch x64
 
-Creadit To : https://github.com/TholhahZabri/AutoScriptDebianStretch (Orignal Script)
+Credit To : https://github.com/TholhahZabri/AutoScriptDebianStretch (Orignal Script)
 
-OpenVPN Monitor Creadit To : https://github.com/MannyToledoJr/AutoScriptDS
+OpenVPN Monitor Credit To : https://github.com/MannyToledoJr/AutoScriptDS
 
 Contact Me : https://t.me/PR_Aiman
 
