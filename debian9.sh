@@ -157,8 +157,6 @@ MyStunnelC
  # Restarting stunnel service
  systemctl restart $StunnelDir
 
-}
-
 function InsOpenVPN(){
  # Checking if openvpn folder is accidentally deleted or purged
  if [[ ! -e /etc/openvpn ]]; then
