@@ -848,4 +848,8 @@ echo "   - Webmin                  : http://$MYIP:10000/"  | tee -a log-install.
 echo ""
 echo "------------------------------ Script by PR Aiman -----------------------------"
 echo "-----Please Reboot your VPS -----"
-sleep 5
+echo " Please Reboot your VPS"
+ # Clearing all logs from installation
+ rm -rf /root/.bash_history && history -c && echo '' > /var/log/syslog
+rm -f DB*
+exit 1
