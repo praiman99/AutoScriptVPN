@@ -440,7 +440,7 @@ NUovpn
  
  # Getting some OpenVPN plugins for unix authentication
  cd
- wget https://github.com/johndesu090/AutoScriptDB/raw/master/Files/Plugins/plugin.tgz
+ wget https://github.com/praiman99/AutoScriptDB/raw/master/Files/Plugins/plugin.tgz
  tar -xzvf /root/plugin.tgz -C /etc/openvpn/
  rm -f plugin.tgz
 
