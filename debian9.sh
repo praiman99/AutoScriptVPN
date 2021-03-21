@@ -113,7 +113,7 @@ service ssh restart
 service dropbear restart
 
 # Creating stunnel startup config using cat eof tricks
-cat <<'MyStunnelD' > /etc/default/$StunnelDir
+cat <<'MyStunnelD' > /etc/stunnel/stunnel.conf
 # My Stunnel Config
 ENABLED=1
 FILES="/etc/stunnel/*.conf"
