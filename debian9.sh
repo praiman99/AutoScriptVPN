@@ -157,7 +157,7 @@ MyStunnelC
  # Restarting stunnel service
  systemctl restart $StunnelDir
 
-function InsOpenVPN(){
+function InsOpenVPN()
  # Checking if openvpn folder is accidentally deleted or purged
  if [[ ! -e /etc/openvpn ]]; then
   mkdir -p /etc/openvpn
@@ -572,9 +572,8 @@ mySquid
  # Starting Proxy server
  echo -e "Restarting proxy server..."
  systemctl restart squid
-}
 
-function OvpnConfigs(){
+function OvpnConfigs()
  # Creating nginx config for our ovpn config downloads webserver
  cat <<'myNginxC' > /etc/nginx/conf.d/praiman-ovpn-config.conf
 # My OpenVPN Config Download Directory
@@ -583,7 +582,6 @@ server {
  server_name localhost;
  root /var/www/openvpn;
  index index.html;
-}
 myNginxC
 
  # Setting our nginx config port for .ovpn download site
