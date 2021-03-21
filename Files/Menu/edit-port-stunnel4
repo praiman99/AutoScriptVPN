@@ -1,0 +1,182 @@
+#!/bin/bash
+#Licensed to https://www.hostingtermurah.net/
+#Script by PR Aiman
+
+# check registered ip
+red='\e[1;31m'
+green='\e[0;32m'
+NC='\e[0m'
+echo "Connecting to Server..."
+sleep 0.4
+echo "Checking Permision..."
+sleep 0.3
+CEK=PRAiman
+if [ "$CEK" != "PRAiman" ]; then
+		echo -e "${red}Permission Denied!${NC}";
+        echo $CEK;
+        exit 0;
+else
+echo -e "${green}Permission Accepted...${NC}"
+sleep 0.6
+clear
+fi
+
+#Check ROOT
+if [[ $USER != "root" ]]; then
+	echo "Oops! root privileges needed."
+	exit
+fi
+
+#Check OS
+if [[ -e /etc/debian_version ]]; then
+	OS=debian
+elif [[ -e /etc/centos-release || -e /etc/redhat-release ]]; then
+	OS=centos
+else
+	echo "This script only works on Debian and CentOS system"
+	exit
+fi
+
+#Remove Temporary Files
+rm -f /root/stunnel4port
+
+if [[ "$OS" = 'debian' ]]; then
+	read -p "Input your desired Stunnel4 Port: " port
+
+	openvpnport="$(netstat -nlpt | grep -i stunnel | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
+	echo ""
+	echo -e "\e[34;1mPort Stunnel before editing:\e[0m"
+
+	cat > /root/stunnel4port <<-END
+	$openvpnport
+	END
+
+	exec</root/stunnel4port
+	while read line
+	do
+		echo "Port $line"
+		sed "/port $line/d" -i /etc/stunnel/stunnel.conf
+	done
+	rm -f /root/stunnel4port
+
+	echo ""
+
+	for i in ${port[@]}
+	do
+		netstat -nlpt | grep -w "$i" > /dev/null
+		if [ $? -eq 0 ]; then
+			netstat -nlpt | grep -i stunnel | grep -w "$i" > /dev/null
+			if [ $? -eq 0 ]; then
+				sed -i "1 a\port $i" /etc/stunnel/stunnel.conf
+				echo -e "\e[032;1mPort $i added successfully\e[0m"
+			fi
+			
+			netstat -nlpt | grep -i ssh | grep -w "$i" > /dev/null
+			if [ $? -eq 0 ]; then
+				echo -e "\e[031;1mPort $i failed to add. Port $i already used for OpenSSH\e[0m"
+			fi
+			
+			netstat -nlpt | grep -i dropbear | grep -w "$i" > /dev/null
+			if [ $? -eq 0 ]; then
+				echo -e "\e[031;1mPort $i failed to add. Port $i already used for Dropbear\e[0m"
+			fi
+			
+			netstat -nlpt | grep -i squid | grep -w "$i" > /dev/null
+			if [ $? -eq 0 ]; then
+				echo -e "\e[031;1mPort $i failed to add. Port $i already used for Squid\e[0m"
+			fi
+		else
+			sed -i "1 a\port $i" /etc/stunnel/stunnel.conf
+			echo -e "\e[032;1mPort $i added successfully\e[0m"
+		fi
+	done
+
+	echo ""
+	systemctl restart stunnel4 > /dev/null
+	sleep 0.5
+	rm -f /root/stunnel4port
+	openvpnport="$(netstat -nlpt | grep -i stunnel | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
+	echo ""
+	echo -e "\e[34;1mPort Stunnel after editing:\e[0m"
+
+	cat > /root/stunnel4port <<-END
+	$openvpnport
+	END
+
+	exec</root/stunnel4port
+	while read line
+	do
+		echo "Port $line"
+	done
+	rm -f /root/stunnel4port
+else
+	read -p "Input your desired Stunnel4 Port: " port
+
+	stunnel4port="$(netstat -nlpt | grep -i stunnel | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
+	echo ""
+	echo -e "\e[34;1mPort Stunnel4 before editing:\e[0m"
+
+	cat > /root/stunnel4port <<-END
+	$stunnel4port
+	END
+
+	exec</root/stunnel4port
+	while read line
+	do
+		echo "Port $line"
+		sed "/port $line/d" -i /etc/stunnel/stunnel.conf
+	done
+	rm -f /root/stunnel4port
+
+	echo ""
+
+	for i in ${port[@]}
+	do
+		netstat -nlpt | grep -w "$i" > /dev/null
+		if [ $? -eq 0 ]; then
+			netstat -nlpt | grep -i stunnel | grep -w "$i" > /dev/null
+			if [ $? -eq 0 ]; then
+				sed -i "1 a\port $i" /etc/stunnel/stunnel.conf
+				echo -e "\e[032;1mPort $i added successfully\e[0m"
+			fi
+			
+			netstat -nlpt | grep -i ssh | grep -w "$i" > /dev/null
+			if [ $? -eq 0 ]; then
+				echo -e "\e[031;1mPort $i failed to add. Port $i already used for OpenSSH\e[0m"
+			fi
+			
+			netstat -nlpt | grep -i dropbear | grep -w "$i" > /dev/null
+			if [ $? -eq 0 ]; then
+				echo -e "\e[031;1mPort $i failed to add. Port $i already used for Dropbear\e[0m"
+			fi
+			
+			netstat -nlpt | grep -i squid | grep -w "$i" > /dev/null
+			if [ $? -eq 0 ]; then
+				echo -e "\e[031;1mPort $i failed to add. Port $i already used for Squid\e[0m"
+			fi
+		else
+			sed -i "1 a\port $i" /etc/stunnel/stunnel.conf
+			echo -e "\e[032;1mPort $i added successfully\e[0m"
+		fi
+	done
+
+	echo ""
+	service Stunnel4 restart > /dev/null
+	sleep 0.5
+	rm -f /root/stunnel4port
+	stunnel4port="$(netstat -nlpt | grep -i stunnel | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
+	echo ""
+	echo -e "\e[34;1mPort Stunnel4 after editing:\e[0m"
+
+	cat > /root/stunnel4port <<-END
+	$stunnel4port
+	END
+
+	exec</root/stunnel4port
+	while read line
+	do
+		echo "Port $line"
+	done
+	rm -f /root/stunnel4port
+fi
+cd
