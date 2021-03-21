@@ -11,8 +11,8 @@
   <a><img src="https://img.shields.io/badge/Service-OpenSSH-green.svg"></a>
   <a><img src="https://img.shields.io/badge/Service-Dropbear-green.svg"></a>
   <a><img src="https://img.shields.io/badge/Service-Stunnel-green.svg"></a>
-  <a><img src="https://img.shields.io/badge/Service-OpenVPN-green.svg"></a>
-  <a><img src="https://img.shields.io/badge/Service-OpenVPN SSL-green.svg"></a>
+  <a><img src="https://img.shields.io/badge/Service-OpenVPN TCP-green.svg"></a>
+  <a><img src="https://img.shields.io/badge/Service-OpenVPN UDP-green.svg"></a>
   <a><img src="https://img.shields.io/badge/Service-Multi Badvpn-green.svg"></a>
   <a><img src="https://img.shields.io/badge/Service-Squid3-green.svg"></a>
  </p>
