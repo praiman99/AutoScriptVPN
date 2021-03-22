@@ -3,7 +3,7 @@
 # © Github.com/johndesu090
 # Orignal Repository: https://github.com/johndesu090/AutoScriptDB
 # Modified By PR Aiman
-# Facebook: https://t.me/PR_Aiman
+# Telegram: https://t.me/PR_Aiman
 # Thanks for using this script, Enjoy Highspeed OpenVPN Service
 
 #############################
@@ -929,37 +929,16 @@ function ScriptMessage(){
 function InstBadVPN(){
  # Pull BadVPN Binary 64bit or 32bit
 if [ "$(getconf LONG_BIT)" == "64" ]; then
-mkdir build
-cd build
-wget https://github.com/ambrop72/badvpn/archive/1.999.130.tar.gz
-tar xvzf 1.999.130.tar.gz
-cd badvpn-1.999.130
-cmake -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_TUN2SOCKS=1 -DBUILD_UDPGW=1
-make install
-make -i install
-
- # auto start badvpn single port
-sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 1000 --max-connections-for-client 10' /etc/rc.local
-screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500 --max-connections-for-client 20 &
-cd
-
-# auto start badvpn second port
-#cd /usr/bin/build/badvpn-1.999.130
-sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 1000 --max-connections-for-client 10' /etc/rc.local
-screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500 --max-connections-for-client 20 &
-cd
-
-# auto start badvpn second port
-sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 1000 --max-connections-for-client 10' /etc/rc.local
-screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500 --max-connections-for-client 20 &
-cd
+ wget -O /usr/bin/badvpn-udpgw "https://github.com/praiman99/AutoScriptDebian9/raw/master/Files/Plugins/badvpn-udpgw64"
+else
+ wget -O /usr/bin/badvpn-udpgw "https://github.com/praiman99/AutoScriptDebian9/raw/master/Files/Plugins/badvpn-udpgw"
+fi
+ # Set BadVPN to Start on Boot via .profile
+ sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /root/.profile
  # Change Permission to make it Executable
-chmod +x /usr/local/bin/badvpn-udpgw
-chmod +x /usr/local/share/man/man7/badvpn.7
-chmod +x /usr/local/bin/badvpn-tun2socks
-chmod +x /usr/local/share/man/man8/badvpn-tun2socks.8
-chmod +x /usr/bin/build
-chmod +x /etc/rc.local
+ chmod +x /usr/bin/badvpn-udpgw
+ # Start BadVPN via Screen
+ screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300
 }
 
 
