@@ -39,7 +39,7 @@ After Install Please Reboot Before Used
 <p align="center">
 Recommended OS: Debian 9 Stretch x64
 
-Credit To : https://github.com/TholhahZabri/AutoScriptDebianStretch (Orignal Script)
+Credit To : https://github.com/rvpn/AutoScriptDB-1 (Orignal Script)
 
 Credit To : https://github.com/Dreyannz/AutoScriptVPS (Orignal Script Menu)
 
