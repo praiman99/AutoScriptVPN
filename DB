@@ -1082,7 +1082,7 @@ echo ""  | tee -a log-install.txt
 echo "OpenVPN Configs Download"  | tee -a log-install.txt
 echo "   - Download Link           : http://$IPADDR:85/configs.zip"  | tee -a log-install.txt
 echo " ©PR-Aiman"  | tee -a log-install.txt
-echo " Facebook: https://t.me/praiman99"  | tee -a log-install.txt
+echo " Telegram: https://t.me/praiman99"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo " This script is under project of https://github.com/praiman99/AutoScriptDebian9"  | tee -a log-install.txt
 echo " Please Reboot your VPS"
