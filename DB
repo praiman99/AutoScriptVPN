@@ -790,15 +790,6 @@ redirect-gateway def1
 setenv CLIENT_CERT 0
 reneg-sec 0
 verb 1
-http-proxy-option VERSION 1.1
-http-proxy-option AGENT Chrome/80.0.3987.87
-http-proxy-option CUSTOM-HEADER Host bug.com
-http-proxy-option CUSTOM-HEADER X-Forward-Host bug.com
-http-proxy-option CUSTOM-HEADER X-Forwarded-For bug.com
-http-proxy-option CUSTOM-HEADER Referrer bug.com
-dhcp-option DNS 8.8.8.8
-dhcp-option DNS 8.8.4.4
-dhcp-option google.com
 <ca>
 $(cat /etc/openvpn/ca.crt)
 </ca>
@@ -921,7 +912,7 @@ cd ~
 function ScriptMessage(){
  echo -e " [\e[1;32m$MyScriptName VPS Installer\e[0m]"
  echo -e ""
- echo -e " https://t.me/praiman99"
+ echo -e "https://t.me/praiman99"
  echo -e "Revolution Become True"
  echo -e ""
 }
