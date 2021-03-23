@@ -13,7 +13,6 @@
   <a><img src="https://img.shields.io/badge/Service-Stunnel-green.svg"></a>
   <a><img src="https://img.shields.io/badge/Service-OpenVPN TCP-green.svg"></a>
   <a><img src="https://img.shields.io/badge/Service-OpenVPN UDP-green.svg"></a>
-  <a><img src="https://img.shields.io/badge/Service-Multi Badvpn-green.svg"></a>
   <a><img src="https://img.shields.io/badge/Service-Squid3-green.svg"></a>
  </p>
 <h3 align="center">Commands</h3>
@@ -26,7 +25,7 @@
     
  <h3 align="center">Screenshorts</h3>
  
- <a align="center">img src="https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Screenshort/1.PNG" style="max-width:100%;"</a>
+ <a align="center" img src="https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Screenshort/1.PNG" style="max-width:100%;"</a>
   
   </h3>
   
