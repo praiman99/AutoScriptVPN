@@ -24,8 +24,7 @@
   <a><img src="https://img.shields.io/badge/Life%20Time-IP%20Registered-lightgrey.svg"><a>
   </p>
  
- <a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Screenshort/screenshort1.png"><img      src="https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Screenshort/screenshort1.png" style="max-width:100%;"></a>
- <img src="https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Screenshort/screenshort1.png" style="max-width:100%;">
+ <a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Screenshort/screenshort1.png"><img      src="https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Screenshort/screenshort1.png" style="max-width:100%;">
  </a>
   
 <h3 align="center">Installation</h3>
