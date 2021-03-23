@@ -31,10 +31,6 @@ Stunnel_Port2='444' # through OpenSSH
 OpenVPN_TCP_Port='1194'
 OpenVPN_UDP_Port='445'
 
-# Privoxy Ports
-Privoxy_Port1='3356'
-Privoxy_Port2='8086'
-
 # Squid Ports
 Squid_Port1='3128'
 Squid_Port2='8080'
