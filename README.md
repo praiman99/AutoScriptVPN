@@ -25,7 +25,7 @@
   </p>
     
   <div align="center">
-    <img src="/screenshots/screenshort1.jpg" width="400px"</img> 
+    <img src="/Screenshot/screenshort1.jpg" width="400px"</img> 
 </div>
   
 <h3 align="center">Installation</h3>
