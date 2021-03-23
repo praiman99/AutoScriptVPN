@@ -42,6 +42,12 @@ After Install Please Reboot Before Used
 <p align="center">
 <pre>wget https://github.com/praiman99/AutoScriptDebian9/master/Files/Plugins/ovpnmonitor.sh && chmod +x ovpnmonitor.sh && ./ovpnmonitor.sh
 </pre></p>
+
+<h3 align="center">Download Link Configs OpenVPN</h3>
+
+<pre>https://ipvps:85/configs.zip
+</pre></p>
+
 <h3 align="center">Additional Info</h3>
 <p align="center">
 Recommended OS: Debian 9 Stretch x64
