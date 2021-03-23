@@ -50,7 +50,7 @@ Credit To : https://github.com/rvpn/AutoScriptDB-1 (Orignal Script)
 
 Credit To : https://github.com/Dreyannz/AutoScriptVPS (Orignal Script Menu)
 
-OpenVPN Monitor Credit To : https://github.com/MannyToledoJr/AutoScriptDS
+Credit To OpenVPN Monitor : https://github.com/MannyToledoJr/AutoScriptDS
 
 Contact Me : https://t.me/PR_Aiman
 
