@@ -24,7 +24,9 @@
   <a><img src="https://img.shields.io/badge/Life%20Time-IP%20Registered-lightgrey.svg"><a>
   </p>
     
-  (https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Screenshort/screenshort1.png)
+  <div align="center">
+    <img src="/screenshots/screenshort1.jpg" width="400px"</img> 
+</div>
   
 <h3 align="center">Installation</h3>
 
