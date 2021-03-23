@@ -45,7 +45,7 @@ After Install Please Reboot Before Used
 
 <h3 align="center">Download Link Configs OpenVPN</h3>
 
-<pre>https://ipvps:85/configs.zip
+<pre>http://ipvps:85/configs.zip
 </pre></p>
 
 <h3 align="center">Additional Info</h3>
