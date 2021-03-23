@@ -25,7 +25,7 @@
   </p>
     
   <div align="center">
-    <img src="/Screenshot/screenshort1.jpg" width="400px"</img> 
+    <img src="https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Screenshort/screenshort1.jpg" width="400px"</img> 
 </div>
   
 <h3 align="center">Installation</h3>
