@@ -23,6 +23,8 @@
 <p align="center">
   <a><img src="https://img.shields.io/badge/Life%20Time-IP%20Registered-lightgrey.svg"><a>
   </p>
+    
+  (https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Screenshort/screenshort1.png)
   
 <h3 align="center">Installation</h3>
 
@@ -47,7 +49,7 @@ OpenVPN Monitor Credit To : https://github.com/MannyToledoJr/AutoScriptDS
 
 Contact Me : https://t.me/PR_Aiman
 
-<h3 align="center">Thanks To ALLAH S.W.T Syukur Alhamdulillah bersyukur atas kepandaian dan kebijaksanaan yang telah di berikan daripada maha pencipta. semoga segala urusan di masa akan datang dipermudahkan</h3>
+<h3 align="center">Thanks to ALLAH S.W.T syukur alhamdulillah syukur kehadrat illahi atas kepandaian dan kebijaksanaan yang telah di berikan daripada maha pencipta. semoga segala urusan di masa akan datang dipermudahkan</h3>
 
 <p align="center">
   <a><img src="https://img.shields.io/badge/Copyright%20©-PR%20Aiman%20AutoScriptDebian9%202021.%20All%20rights%20reserved...-green.svg" style="max-width:200%;">
