@@ -23,10 +23,7 @@
 <p align="center">
   <a><img src="https://img.shields.io/badge/Life%20Time-IP%20Registered-lightgrey.svg"><a>
   </p>
-    
-  <p align="center">
-    <a><img src="https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Screenshort/screenshort1.jpg" width="400px"</a> 
-</p>
+ <img src="https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Screenshort/screenshort.png" style="max-width:100%;">
   
 <h3 align="center">Installation</h3>
 
