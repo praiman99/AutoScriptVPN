@@ -26,7 +26,7 @@
     
  <h3 align="center">Screenshorts</h3>
  
- <a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Screenshort/screenshort1.PNG"><img      src="https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Screenshort/screenshort1.PNG" style="max-width:100%;">
+ <a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Screenshort/1.PNG"><img      src="https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Screenshort/1.PNG" style="max-width:100%;">
  </a>
   
   </h3>
