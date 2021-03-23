@@ -25,7 +25,7 @@
     
  <h3 align="center">Screenshorts</h3>
  
- <a align="center" img src="https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Screenshort/1.PNG" style="max-width:100%;"</a>
+ <img src="https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/Screenshort/1.PNG" width="100%">
   
   </h3>
   
