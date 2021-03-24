@@ -899,8 +899,8 @@ unzip -qq bashmenu.zip
 rm -f bashmenu.zip
 chmod +x ./*
 dos2unix ./* &> /dev/null
-sed -i 's|/etc/squid/squid.conf|/etc/privoxy/config|g' ./*
-sed -i 's|http_port|listen-address|g' ./*
+sed -i 's|/etc/squid/squid.conf|g' ./*
+sed -i 's|http_port|g' ./*
 cd ~
 }
 
