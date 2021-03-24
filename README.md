@@ -54,7 +54,7 @@ Recommended OS: Debian 9 Stretch x64
 
 Credit To : https://github.com/rvpn/AutoScriptDB-1 (Orignal Script)
 
-Credit To : https://github.com/Dreyannz/AutoScriptVPS (Orignal Script Menu)
+Credit To : https://github.com/johndesu090/AutoScriptDeb8 (Orignal Script Menu)
 
 Credit To : https://github.com/MannyToledoJr/AutoScriptDS (Orignal Script OpenVPN Monitor)
 
