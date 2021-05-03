@@ -62,6 +62,10 @@ function InstUpdates(){
  # Removing some firewall tools that may affect other services
  apt-get remove --purge ufw firewalld -y
 
+ # Install Speedtest
+ apt install python-pip
+ apt install ptyhon3-pip
+ pip install speedtest-cli
  
  # Installing some important machine essentials
  apt-get install nano wget curl zip unzip tar gzip p7zip-full bc rc openssl cron net-tools dnsutils dos2unix screen bzip2 ccrypt -y
