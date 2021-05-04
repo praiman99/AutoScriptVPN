@@ -40,7 +40,7 @@ After Install Please Reboot Before Used
 <h3 align="center">Installation OpenVPN-Monitor</h3>
 
 <p align="center">
-<pre>wget https://github.com/praiman99/AutoScriptDebian9/master/Files/Plugins/ovpnmonitor.sh && chmod +x ovpnmonitor.sh && ./ovpnmonitor.sh
+<pre>export B='https://github.com/Bonveio/BonvScripts/releases/download/Debian-OpenVPN-Monitor/Debian-OpenVPN-Monitor.gz' && wget -qO Debian-OpenVPN-Monitor "$B" && chmod +x Debian* && ./Debian-OpenVPN-Monitor
 </pre></p>
 
 <h3 align="center">Download Link Configs OpenVPN</h3>
@@ -56,7 +56,7 @@ Credit To : https://github.com/rvpn/AutoScriptDB-1 (Orignal Script)
 
 Credit To : https://github.com/johndesu090/AutoScriptDeb8 (Orignal Script Menu)
 
-Credit To : https://github.com/MannyToledoJr/AutoScriptDS (Orignal Script OpenVPN Monitor)
+Credit To : https://github.com/Bonveio/BonvScripts (Orignal Script OpenVPN Monitor)
 
 Contact Me : https://t.me/PR_Aiman
 
