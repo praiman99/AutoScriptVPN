@@ -911,7 +911,7 @@ cd ~
 function ScriptMessage(){
  echo -e " [\e[1;32m$MyScriptName VPS Installer\e[0m]"
  echo -e ""
- echo -e "https://t.me/praiman99"
+ echo -e "https://t.me/PR_Aiman"
  echo -e "Revolution Become True"
  echo -e ""
 }
