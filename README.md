@@ -32,7 +32,7 @@
 <h3 align="center">Installation</h3>
 
 <p align="center">
-<pre>wget https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/DB && chmod +x DB && ./DB
+<pre>wget https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/setup && chmod +x setup && ./setup
 </pre></p>
 <h3 align="center">Installation OpenVPN-Monitor</h3>
 
