@@ -54,7 +54,7 @@ Credit To : https://github.com/johndesu090/AutoScriptDeb8 (Orignal Script Menu)
 
 Credit To : https://github.com/Bonveio/BonvScripts (Orignal Script OpenVPN Monitor)
 
-Contact Me : https://t.me/PR_Aiman
+Report Bug Contact : https://t.me/PR_Aiman
 
 <h3 align="center">Thanks to ALLAH S.W.T alhamdulillah syukur kehadrat illahi atas kepandaian dan kebijaksanaan yang telah di berikan daripada maha pencipta. semoga segala urusan di masa akan datang dipermudahkan</h3>
 
