@@ -58,7 +58,12 @@ function InstUpdates(){
  export DEBIAN_FRONTEND=noninteractive
  apt-get update
  apt-get upgrade -y
- 
+
+# Install Ssl & Certificates
+ apt install ssl-cert
+ apt install ca-certificates
+
+
  # Removing some firewall tools that may affect other services
  apt-get remove --purge ufw firewalld -y
 
