@@ -4,7 +4,6 @@
 <h3 align="center">Supported Linux Distribution</h3>
 <p align="center">
   <a><img src="https://img.shields.io/badge/Support-Debian-red.svg"></a>
-  <a><img src="https://img.shields.io/badge/Support-Ubuntu-blue.svg"></a>
   
 </p>
 <h3 align="center">Services</h3>
@@ -47,7 +46,7 @@
 
 <h3 align="center">Additional Info</h3>
 <p align="center">
-Recommended OS: Debian / Ubuntu x64 bit
+Recommended OS: Debian x64 bit
 
 Credit To : https://github.com/rvpn/AutoScriptDB-1 (Orignal Script)
 
