@@ -955,6 +955,29 @@ fi
 #############################################
 #############################################
 
+ # First thing to do is check if this machine is Debian
+ source /etc/os-release
+if [[ "$ID" != 'debian']]; then
+ ScriptMessage
+ echo -e "[\e[1;31mError This script is for Debian or Ubuntu only, exiting..." 
+ exit 1
+fi
+
+ # Now check if our machine is in root user, if not, this script exits
+ # If you're on sudo user, run `sudo su -` first before running this script
+ if [[ $EUID -ne 0 ]];then
+ ScriptMessage
+ echo -e "[\e[1;31mError This script must be run as root, exiting..."
+ exit 1
+fi
+
+ # (For OpenVPN) Checking it this machine have TUN Module, this is the tunneling interface of OpenVPN server
+ if [[ ! -e /dev/net/tun ]]; then
+ echo -e "[\e[1;31mError\e[0m] You cant use this script without TUN Module installed/embedded in your machine, file a support ticket to your machine admin about this matter"
+ echo -e "[\e[1;31m-\e[0m] Script is now exiting..."
+ exit 1
+fi
+
  # Begin Installation by Updating and Upgrading machine and then Installing all our wanted packages/services to be install.
  ScriptMessage
  sleep 2
