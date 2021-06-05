@@ -20,9 +20,6 @@
 <p align="center">
   <a><img src="https://img.shields.io/badge/Commands-menu-yellow.svg"></a>
   </p>
-<p align="center">
-  <a><img src="https://img.shields.io/badge/Life%20Time-IP%20Registered-lightgrey.svg"><a>
-  </p>
     
  <h3 align="center">Screenshorts</h3>
  
@@ -37,7 +34,6 @@
 <p align="center">
 <pre>wget https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/DB && chmod +x DB && ./DB
 </pre></p>
-After Install Please Reboot Before Used
 <h3 align="center">Installation OpenVPN-Monitor</h3>
 
 <p align="center">
