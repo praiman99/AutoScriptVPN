@@ -954,7 +954,7 @@ fi
 
  # First thing to do is check if this machine is Debian
  source /etc/os-release
-if [[ "$ID" != 'debian' != 'ubuntu' ]]; then
+if [[ "$ID" != 'debian' ]]; then
  ScriptMessage
  echo -e "[\e[1;31mError This script is for Debian or Ubuntu only, exiting..." 
  exit 1
