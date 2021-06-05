@@ -1,9 +1,10 @@
-<h1 align="center"> VPS AutoScript Debian 9 <img src="https://img.shields.io/badge/Version-1.2-blue.svg"></h1>
+<h1 align="center"> VPS AutoScriptVPN <img src="https://img.shields.io/badge/Version-1.2-blue.svg"></h1>
 
-<p align="center">VPS AutoScript is made by FordSenpai Remodified by PR Aiman for Virtual Private Network</p>
+<p align="center">VPS AutoScriptVPN is made by FordSenpai Remodified by PR Aiman for Virtual Private Network</p>
 <h3 align="center">Supported Linux Distribution</h3>
 <p align="center">
-  <a><img src="https://img.shields.io/badge/Support-Debian%209-red.svg"></a>
+  <a><img src="https://img.shields.io/badge/Support-Debian-red.svg"></a>
+  <a><img src="https://img.shields.io/badge/Support-Ubuntu-blue.svg"></a>
   
 </p>
 <h3 align="center">Services</h3>
@@ -34,7 +35,7 @@
 <h3 align="center">Installation</h3>
 
 <p align="center">
-<pre>apt update && apt upgrade && wget https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/DB && chmod +x DB && ./DB
+<pre>wget https://raw.githubusercontent.com/praiman99/AutoScriptDebian9/master/DB && chmod +x DB && ./DB
 </pre></p>
 After Install Please Reboot Before Used
 <h3 align="center">Installation OpenVPN-Monitor</h3>
@@ -50,7 +51,7 @@ After Install Please Reboot Before Used
 
 <h3 align="center">Additional Info</h3>
 <p align="center">
-Recommended OS: Debian 9 Stretch x64
+Recommended OS: Debian / Ubuntu x64 bit
 
 Credit To : https://github.com/rvpn/AutoScriptDB-1 (Orignal Script)
 
