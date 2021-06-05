@@ -900,7 +900,7 @@ FordServ
 }
  #Create Admin
  useradd -m praiman
- echo -e "\e[0;37m praiman:123" | chpasswd
+ echo "praiman:123" | chpasswd
 
 function ConfMenu(){
 echo -e "\e[0;37m  Creating Menu scripts.."
@@ -956,12 +956,13 @@ fi
 #############################################
 
  # First thing to do is check if this machine is Debian
- source /etc/os-release
-if [[ "$ID" != 'debian' != 'ubuntu']]; then
- ScriptMessage
- echo -e "[\e[1;31mError This script is for Debian or Ubuntu only, exiting..." 
- exit 1
-fi
+# source /etc/os-release
+#if [[ "$ID" != 'debian' != 'ubuntu']]; then
+# ScriptMessage
+# echo -e "[\e[1;31mError This script is for Debian or Ubuntu only, exiting..." 
+ #exit 1
+#fi
+
 
  # Now check if our machine is in root user, if not, this script exits
  # If you're on sudo user, run `sudo su -` first before running this script
