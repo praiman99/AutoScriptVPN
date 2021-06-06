@@ -385,7 +385,7 @@ Certificate:
                 FC:26:FF:C3:A5:3C:38:BB:E4:20:91:7E:32:62:A2:5A:5F:9F:50:44
             X509v3 Authority Key Identifier:
                 keyid:29:23:14:CB:81:E6:D7:60:82:5E:32:12:1C:2C:8E:15:A2:A6:B6:84
-                DirName:/C=PH/ST=Tarlac/L=Concepcion/O=PR Aiman/OU=PR Aiman/CN=DebianVPN/name=John Ford Mangiliman/emailAddress=admin@PR Aiman.me
+                DirName:/C=PH/ST=Tarlac/L=Concepcion/O=PR Aiman/OU=PR Aiman/CN=VPN/name=PR Aiman/emailAddress=admin@PR Aiman.me
                 serial:AB:68:B0:33:B1:28:D3:EF
 
             X509v3 Extended Key Usage:
