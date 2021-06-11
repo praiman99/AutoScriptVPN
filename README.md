@@ -39,9 +39,14 @@
 <pre>export B='https://github.com/Bonveio/BonvScripts/releases/download/Debian-OpenVPN-Monitor/Debian-OpenVPN-Monitor.gz' && wget -qO Debian-OpenVPN-Monitor "$B" && chmod +x Debian* && ./Debian-OpenVPN-Monitor
 </pre></p>
 
-<h3 align="center">Download Link Configs OpenVPN</h3>
+<h3 align="center">Openvpn-Monitor Link</h3>
 
 <pre>http://ipvps:85
+</pre></p>
+
+<h3 align="center">Download Link Configs OpenVPN</h3>
+
+<pre>http://ipvps:99
 </pre></p>
 
 <h3 align="center">Additional Info</h3>
