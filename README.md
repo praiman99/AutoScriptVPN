@@ -14,7 +14,6 @@
   <a><img src="https://img.shields.io/badge/Service-OpenVPN TCP-success.svg"></a>
   <a><img src="https://img.shields.io/badge/Service-OpenVPN UDP-success.svg"></a>
   <a><img src="https://img.shields.io/badge/Service-Squid3-success.svg"></a>
-  <a><img src="https://img.shields.io/badge/Service-Multi BadVPN-success.svg"></a>
  </p>
 <h3 align="center">Commands</h3>
 <p align="center">
