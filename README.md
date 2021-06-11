@@ -33,20 +33,10 @@
 <p align="center">
 <pre>wget https://raw.githubusercontent.com/praiman99/AutoScriptVPN/master/setup && chmod +x setup && ./setup
 </pre></p>
-<h3 align="center">Installation OpenVPN-Monitor</h3>
-
-<p align="center">
-<pre>export B='https://github.com/Bonveio/BonvScripts/releases/download/Debian-OpenVPN-Monitor/Debian-OpenVPN-Monitor.gz' && wget -qO Debian-OpenVPN-Monitor "$B" && chmod +x Debian* && ./Debian-OpenVPN-Monitor
-</pre></p>
-
-<h3 align="center">Openvpn-Monitor Link</h3>
-
-<pre>http://ipvps:85
-</pre></p>
 
 <h3 align="center">Download Link Configs OpenVPN</h3>
 
-<pre>http://ipvps:99
+<pre>http://ipvps:85
 </pre></p>
 
 <h3 align="center">Additional Info</h3>
@@ -56,8 +46,6 @@ Recommended OS: Debian x64 bit
 Credit To : https://github.com/rvpn/AutoScriptDB-1 (Orignal Script)
 
 Credit To : https://github.com/johndesu090/AutoScriptDeb8 (Orignal Script Menu)
-
-Credit To : https://github.com/Bonveio/BonvScripts (Orignal Script OpenVPN Monitor)
 
 Report Bug Contact : https://t.me/PR_Aiman
 
