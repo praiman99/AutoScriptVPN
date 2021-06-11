@@ -1,4 +1,4 @@
-<h1 align="center"> VPS AutoScriptVPN <img src="https://img.shields.io/badge/Version-1.4-blue.svg"></h1>
+<h1 align="center"> VPS AutoScriptVPN <img src="https://img.shields.io/badge/Version-1.5-blue.svg"></h1>
 
 <p align="center">VPS AutoScriptVPN is made by FordSenpai Remodified by PR Aiman for Virtual Private Network</p>
 <h3 align="center">Supported Linux Distribution</h3>
@@ -8,12 +8,13 @@
 </p>
 <h3 align="center">Services</h3>
 <p align="center">
-  <a><img src="https://img.shields.io/badge/Service-OpenSSH-green.svg"></a>
-  <a><img src="https://img.shields.io/badge/Service-Dropbear-green.svg"></a>
-  <a><img src="https://img.shields.io/badge/Service-Stunnel-green.svg"></a>
-  <a><img src="https://img.shields.io/badge/Service-OpenVPN TCP-green.svg"></a>
-  <a><img src="https://img.shields.io/badge/Service-OpenVPN UDP-green.svg"></a>
-  <a><img src="https://img.shields.io/badge/Service-Squid3-green.svg"></a>
+  <a><img src="https://img.shields.io/badge/Service-OpenSSH-success.svg"></a>
+  <a><img src="https://img.shields.io/badge/Service-Dropbear-success.svg"></a>
+  <a><img src="https://img.shields.io/badge/Service-Stunnel-success.svg"></a>
+  <a><img src="https://img.shields.io/badge/Service-OpenVPN TCP-success.svg"></a>
+  <a><img src="https://img.shields.io/badge/Service-OpenVPN UDP-success.svg"></a>
+  <a><img src="https://img.shields.io/badge/Service-Squid3-success.svg"></a>
+  <a><img src="https://img.shields.io/badge/Service-Multi BadVPN-success.svg"></a>
  </p>
 <h3 align="center">Commands</h3>
 <p align="center">
