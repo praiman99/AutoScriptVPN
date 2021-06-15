@@ -36,7 +36,7 @@
 
 <h3 align="center">Download Link Configs OpenVPN</h3>
 
-<pre>http://ipvps:85
+<pre align="center">http://ipvps:85
 </pre></p>
 
 <h3 align="center">Additional Info</h3>
