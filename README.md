@@ -3,7 +3,7 @@
 <p align="center">VPS AutoScriptVPN is made by FordSenpai Remodified by PR Aiman for Virtual Private Network</p>
 <h3 align="center">Supported Linux Distribution</h3>
 <p align="center">
-  <a><img src="https://img.shields.io/badge/Support-Debian-9-&-10-red.svg"></a>
+  <a><img src="https://img.shields.io/badge/Support-Debian-red.svg"></a>
   
 </p>
 <h3 align="center">Services</h3>
@@ -41,7 +41,7 @@
 
 <h3 align="center">Additional Info</h3>
 <p align="center">
-Recommended OS: Debian 9 x64 bit
+Recommended OS: Debian 9 & 10 x64 bit
 
 Credit To : https://github.com/rvpn/AutoScriptDB-1 (Orignal Script)
 
