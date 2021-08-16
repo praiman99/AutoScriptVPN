@@ -928,6 +928,7 @@ wget -O set_multilogin_autokill_lib "https://github.com/praiman99/AutoScriptVPN/
 wget -O show_ports "https://github.com/praiman99/AutoScriptVPN/raw/master/Files/Menu/show_ports"
 wget -O user_delete "https://github.com/praiman99/AutoScriptVPN/raw/master/Files/Menu/user_delete"
 wget -O user_list "https://github.com/praiman99/AutoScriptVPN/raw/master/Files/Menu/user_list"
+wget -O change_timezone "https://github.com/praiman99/AutoScriptVPN/raw/master/Files/Menu/change_timezone"
 chmod +x bench-network
 chmod +x connections
 chmod +x create
@@ -951,6 +952,7 @@ chmod +x set_multilogin_autokill_lib
 chmod +x show_ports
 chmod +x user_delete
 chmod +x user_list
+chmod +x change_timezone
 dos2unix ./* &> /dev/null
 sed -i 's|/etc/squid/squid.conf|g' ./*
 sed -i 's|http_port|g' ./*
