@@ -1,4 +1,4 @@
-<h1 align="center"> VPS AutoScriptVPN <img src="https://img.shields.io/badge/Version-1.8-blue.svg"></h1>
+<h1 align="center"> VPS AutoScriptVPN <img src="https://img.shields.io/badge/Version-1.9-blue.svg"></h1>
 
 <p align="center">VPS AutoScriptVPN is made by FordSenpai Remodified by PR Aiman for Virtual Private Network</p>
 <h3 align="center">Supported Linux Distribution</h3>
