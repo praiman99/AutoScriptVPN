@@ -1074,6 +1074,16 @@ fi
  clear
  cd ~
  
+ # Install DDOS Deflate
+cd
+apt-get -y install dnsutils dsniff
+wget "https://github.com/praiman99/AutoScriptVPN/raw/master/Other/ddos-deflate-master.zip"
+unzip ddos-deflate-master.zip
+cd ddos-deflate-master
+./install.sh
+cd
+rm -rf ddos-deflate-master.zip
+ 
  # Running screenfetch
  wget -O /usr/bin/screenfetch "https://github.com/praiman99/AutoScriptVPN/raw/master/Files/Plugins/screenfetch"
  chmod +x /usr/bin/screenfetch
