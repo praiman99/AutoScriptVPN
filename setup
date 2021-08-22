@@ -1077,7 +1077,7 @@ fi
 # Install DDOS Deflate
 cd
 apt-get -y install dnsutils dsniff
-wget "https://github.com/praiman99/AutoScriptVPN/raw/master/Others/ddos-deflate-master.zip"
+wget "https://github.com/praiman99/AutoScriptVPN/raw/master/Files/Others/ddos-deflate-master.zip"
 unzip ddos-deflate-master.zip
 cd ddos-deflate-master
 ./install.sh
