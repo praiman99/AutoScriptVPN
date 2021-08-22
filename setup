@@ -31,6 +31,10 @@ Stunnel_Port2='444' # through OpenSSH
 OpenVPN_TCP_Port='1194'
 OpenVPN_UDP_Port='445'
 
+# Privoxy Ports
+Privoxy_Port1='9000'
+Privoxy_Port2='9999'
+
 # Squid Ports
 Squid_Port1='3128'
 Squid_Port2='8080'
@@ -616,9 +620,9 @@ privoxy
 acl VPN dst IP-ADDRESS/32
 http_access allow VPN
 http_access deny all 
-http_port Squid_Port1
-http_port Squid_Port2
-http_port Squid_Port3
+http_port 0.0.0.0:Squid_Port1
+http_port 0.0.0.0:Squid_Port2
+http_port 0.0.0.0:Squid_Port3
 ### Allow Headers
 request_header_access Allow allow all 
 request_header_access Authorization allow all 
