@@ -1143,7 +1143,7 @@ echo -e "\e[0;37m    - Telegram Contact        : https://t.me/PR_Aiman"  | tee -
 echo ""  | tee -a log-install.txt
 echo -e "\e[0;37m This script is under project of https://github.com/praiman99/AutoScriptVPN"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
---------------------------------------------------------------------------------
+echo "--------------------------------------------------------------------------------"
 
 # Clearing all logs from installation
  rm -rf /root/.bash_history && history -c && echo '' > /var/log/syslog
