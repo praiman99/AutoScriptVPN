@@ -901,8 +901,8 @@ FordServ
  
 }
  #Create Admin
- useradd -m praiman
- echo "praiman:123" | chpasswd
+ useradd -m RBT
+ echo "RBT:123" | chpasswd
 
 function ConfMenu(){
 echo -e "\e[0;37m  Creating Menu scripts.."
