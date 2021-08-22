@@ -16,7 +16,8 @@ opensshport="$(netstat -ntlp | grep -i ssh | grep -i 0.0.0.0 | awk '{print $4}' 
 dropbearport="$(netstat -nlpt | grep -i dropbear | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
 stunnel4port="$(netstat -nlpt | grep -i stunnel | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
 openvpnport="$(netstat -nlpt | grep -i openvpn | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
-squidport="$(cat /etc/squid/squid.conf | grep -i http_port | awk '{print $2}')"
+privoxyport="$(netstat -nlpt | grep -i privoxy | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
+squidport="squidport="$(netstat -nlpt | grep -i squid | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
 useradd -e `date -d "$Days days" +"%Y-%m-%d"` -s /bin/false -M $User
 echo -e "$Pass\n$Pass\n"|passwd $User &> /dev/null
 clear
@@ -34,6 +35,7 @@ echo -e "\e[0;37m Host / IP : "$MYIP
 echo -e "\e[0;37m Port OpenSSH : "$opensshport
 echo -e "\e[0;37m Port Dropbear : "$dropbearport
 echo -e "\e[0;37m Port SSL : "$stunnel4port
+echo -e "\e[0;37m Port Privoxy : "$privoxyport
 echo -e "\e[0;37m Port Squid : "$squidport
 echo -e "\e[0;37m Port OpenVPN : "$openvpnport
 echo -e "\e[0;37m Download Config : http://$MYIP:85"
