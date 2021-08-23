@@ -46,7 +46,7 @@ Recommended OS: Debian 9 & 10 x64 bit
 
 Credit To : https://github.com/rvpn/AutoScriptDB-1 (Orignal Base Script)
 
-Credit To : https://github.com/johndesu090/AutoScriptDeb8 (Orignal Menu Sript)
+Credit To : https://github.com/johndesu090/AutoScriptDeb8 (Orignal Menu Script)
 
 Report Bugs Contact : https://t.me/PR_Aiman
 
