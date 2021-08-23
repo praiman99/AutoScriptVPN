@@ -11,6 +11,8 @@
 # Variables (Can be changed depends on your preferred values)
 # Script name
 MyScriptName='Revolution Become True'
+MYIP=$(wget -qO- icanhazip.com);
+MYIP2="s/xxxxxxxxx/$MYIP/g";
 
 # OpenSSH Ports
 SSH_Port1='22'
@@ -730,7 +732,7 @@ myNginxC
 
  # Now creating all of our OpenVPN Configs 
 
-cat <<EOF16> /var/www/openvpn/praiman-tcp.ovpn
+cat <<EOF16> /var/www/openvpn/client-tcp.ovpn
 # PR-Aiman's VPN Premium Script
 # © Github.com/praiman99
 # Telegram : https://t.me/PR_Aiman
@@ -756,7 +758,7 @@ redirect-gateway def1
 setenv CLIENT_CERT 0
 reneg-sec 0
 verb 1
-http-proxy $IPADDR $Squid_Port1
+http-proxy xxxxxxxxx $Squid_Port1
 http-proxy-option VERSION 1.1
 http-proxy-option AGENT Chrome/80.0.3987.87
 http-proxy-option CUSTOM-HEADER Host bug.com
@@ -771,7 +773,48 @@ $(cat /etc/openvpn/ca.crt)
 </ca>
 EOF16
 
-cat <<EOF162> /var/www/openvpn/praiman-udp.ovpn
+cat <<EOF16> /var/www/openvpn/client-tcp-privoxy.ovpn
+# PR-Aiman's VPN Premium Script
+# © Github.com/praiman99
+# Telegram : https://t.me/PR_Aiman
+# Official Repository : https://github.com/praiman99/AutoScriptVPN
+# Thanks for using this script, Enjoy Highspeed OpenVPN Service
+client
+dev tun
+proto tcp
+setenv FRIENDLY_NAME "Revolution Become True"
+remote $IPADDR $OpenVPN_TCP_Port
+remote-cert-tls server
+connect-retry infinite
+resolv-retry infinite
+nobind
+persist-key
+persist-tun
+auth-user-pass
+auth none
+auth-nocache
+cipher none
+comp-lzo
+redirect-gateway def1
+setenv CLIENT_CERT 0
+reneg-sec 0
+verb 1
+http-proxy xxxxxxxxx $Squid_Port1
+http-proxy-option VERSION 1.1
+http-proxy-option AGENT Chrome/80.0.3987.87
+http-proxy-option CUSTOM-HEADER Host bug.com
+http-proxy-option CUSTOM-HEADER X-Forward-Host bug.com
+http-proxy-option CUSTOM-HEADER X-Forwarded-For bug.com
+http-proxy-option CUSTOM-HEADER Referrer bug.com
+dhcp-option DNS 8.8.8.8
+dhcp-option DNS 8.8.4.4
+
+<ca>
+$(cat /etc/openvpn/ca.crt)
+</ca>
+EOF16
+
+cat <<EOF162> /var/www/openvpn/client-udp.ovpn
 # PR-Aiman's VPN Premium Script
 # © Github.com/praiman99
 # Telegram : https://t.me/PR_Aiman
