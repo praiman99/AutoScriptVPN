@@ -1008,12 +1008,15 @@ cd ~
 
 function ScriptMessage(){
  echo -e ""
- echo -e "\e[0;37m $MyScriptName VPS Installer Will Begin"
+ echo -e "\e[0;37m $MyScriptName VPS Installer Version 2.2 Will Begin"
  echo -e ""
+ sleep 0.5
  echo -e "\e[0;37m Report Bug https://t.me/PR_Aiman"
  echo -e ""
+ sleep 0.5
  echo -e "\e[0;37m Script installer will be begin now..."
  echo -e ""
+ sleep 0.5
 }
 
 function InstBadVPN(){
