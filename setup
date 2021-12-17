@@ -66,7 +66,7 @@ function InstUpdates(){
  export DEBIAN_FRONTEND=noninteractive
  apt update
  apt upgrade
- apt-get update
+ apt-get update -y
  apt-get upgrade -y
 
 # Install Ssl & Certificates
@@ -81,28 +81,27 @@ function InstUpdates(){
  pip install speedtest-cli
  
  # Installing some important machine essentials
- apt-get install -y nano zip unzip tar gzip p7zip-full bc rc openssl cron net-tools dnsutils dos2unix screen bzip2 ccrypt
+ apt-get install nano zip unzip tar gzip p7zip-full bc rc openssl cron net-tools dnsutils dos2unix screen bzip2 ccrypt -y
  
  # Now installing all our wanted services
- apt-get install -y dropbear stunnel4 privoxy ca-certificates nginx ruby apt-transport-https lsb-release squid3
+ apt-get install dropbear stunnel4 privoxy ca-certificates nginx ruby apt-transport-https lsb-release squid3 -y
  
  # Installing all required packages to install Webmin
- apt-get install -y perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python dbus libxml-parser-perl
- apt-get install -y shared-mime-info jq fail2ban 
+ apt-get install perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python dbus libxml-parser-perl
+ apt-get install shared-mime-info jq fail2ban -y
 
- 
  # Installing a text colorizer
  gem install lolcat
 
  # Trying to remove obsolette packages after installation
- apt-get -y autoremove
+ apt-get autoremove -y
  
  # Installing OpenVPN by pulling its repository inside sources.list file 
  rm -rf /etc/apt/sources.list.d/openvpn*
  echo "deb http://build.openvpn.net/debian/openvpn/stable $(lsb_release -sc) main" > /etc/apt/sources.list.d/openvpn.list
  wget -qO - http://build.openvpn.net/debian/openvpn/stable/pubkey.gpg|apt-key add -
  apt-get update
- apt-get install -y openvpn
+ apt-get install openvpn -y
 }
 
 function InstWebmin(){
