@@ -1007,7 +1007,7 @@ cd ~
 
 function ScriptMessage(){
  echo -e ""
- echo -e "\e[0;37m $MyScriptName VPS Installer Version 2.3 Will Begin"
+ echo -e "\e[0;37m $MyScriptName VPS Installer Version 2.4 Will Begin"
  echo -e ""
  sleep 0.5
  echo -e "\e[0;37m Report Bug https://t.me/PR_Aiman"
