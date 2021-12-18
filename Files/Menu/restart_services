@@ -1,0 +1,154 @@
+#!/bin/bash
+# Script by : PR Aiman
+
+clear
+echo -e "\e[0m                                                   "
+echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+echo -e "\e[0m                                                   "
+echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman           "
+echo -e "\e[0m                                                   "
+echo -e "\e[0;37m                    [1] Restart All Services"
+echo -e "\e[0;37m                    [2] Restart OpenSSH"
+echo -e "\e[0;37m                    [3] Restart Dropbear"
+echo -e "\e[0;37m                    [4] Restart Stunnel4"
+echo -e "\e[0;37m                    [5] Restart OpenVPN"
+echo -e "\e[0;37m                    [6] Restart Squid"
+echo -e "\e[0;37m                    [7] Restart Nginx"
+echo -e "\e[0;37m                    [8] Back"
+echo -e "\e[0;37m                    [x] Exit"
+echo -e "\e[0m                                                   "
+read -p "              Select From Options [1-8 or x] :  " Restart
+echo -e "\e[0m                                                   "
+echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]\e[0m"
+clear
+case $Restart in
+		1)
+		clear
+		service ssh restart
+		service dropbear restart
+		service stunnel4 restart
+		service openvpn restart
+		service squid restart
+		service nginx restart
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman           "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    Services Restarted               "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo ""
+        read -sp " Press ENTER to go back"
+        echo ""
+        restart_services
+        ;;
+		2)
+		clear
+		service ssh restart
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman           "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    SSH Service Restarted               "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo ""
+        read -sp " Press ENTER to go back"
+        echo ""
+        restart_services
+        ;;
+		3)
+		clear
+		service dropbear restart
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman           "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    Dropbear Service Restarted            "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo ""
+        read -sp " Press ENTER to go back"
+        echo ""
+        restart_services
+        ;;
+		4)
+		clear
+		service stunnel4 restart
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman           "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    Stunnel4 Service Restarted            "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo ""
+        read -sp " Press ENTER to go back"
+        echo ""
+        restart_services
+        ;;
+		5)
+		clear
+		service openvpn restart
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman           "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    OpenVPN Service Restarted             "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo ""
+        read -sp " Press ENTER to go back"
+        echo ""
+        restart_services
+        ;;
+		6)
+		clear
+		service squid restart
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman           "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    Squid3 Service Restarted             "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo ""
+        read -sp " Press ENTER to go back"
+        echo ""
+        restart_services
+        ;;
+		7)
+		clear
+		service nginx restart
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman           "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    Nginx Service Restarted              "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo ""
+        read -sp " Press ENTER to go back"
+        echo ""
+        restart_services
+        ;;
+		8)
+		clear
+		options
+		exit
+		;;
+		x)
+		clear
+		exit
+		;;
+		*)
+        restart_services
+		;;
+	esac
