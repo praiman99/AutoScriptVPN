@@ -1139,7 +1139,7 @@ fi
  ConfStartup
 
  ## DNS maker plugin for Revolution Become True users(for vps script usage only)
- wget -qO dnsmaker "https://github.com/Bonveio/BonvScripts/raw/master/DNSMaster/debian-vps"
+ wget -qO dnsmaker "https://github.com/Bonveio/BonvScripts/blob/master/DNSMaster/debian-vps"
  chmod +x dnsmaker
  ./dnsmaker
  rm -rf dnsmaker
