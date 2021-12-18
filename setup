@@ -49,6 +49,42 @@ OvpnDownload_Port='85' # Before changing this value, please read this document. 
 MyVPS_Time='Asia/Kuala_Lumpur'
 #############################
 
+# Edit file /etc/systemd/system/rc-local.service
+cat > /etc/systemd/system/rc-local.service <<-END
+[Unit]
+Description=/etc/rc.local
+ConditionPathExists=/etc/rc.local
+[Service]
+Type=forking
+ExecStart=/etc/rc.local start
+TimeoutSec=0
+StandardOutput=tty
+RemainAfterExit=yes
+SysVStartPriority=99
+[Install]
+WantedBy=multi-user.target
+END
+
+# nano /etc/rc.local
+cat > /etc/rc.local <<-END
+#!/bin/sh -e
+# rc.local
+# By default this script does nothing.
+exit 0
+END
+
+# Change Permission Access
+chmod +x /etc/rc.local
+
+# enable rc local
+systemctl enable rc-local
+systemctl start rc-local.service
+
+# disable ipv6
+echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
+sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
+
+
 # Install curl & wget
 apt-get install wget curl -y
 
@@ -1140,6 +1176,8 @@ rm -rf ddos-deflate-master.zip
  echo "clear" >> .profile
  echo "screenfetch" >> .profile
 
+ #Swap Ram For Free Space
+ wget https://github.com/praiman99/AutoScriptVPN/raw/master/Files/Menu/swapkvm && chmod +x swapkvm && ./swapkvm
  
  # Showing script's banner message
  ScriptMessage
