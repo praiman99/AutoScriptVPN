@@ -1,0 +1,28 @@
+#!/bin/bash
+# Script by : PR Aiman
+
+
+opensshport="$(netstat -ntlp | grep -i ssh | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
+dropbearport="$(netstat -nlpt | grep -i dropbear | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
+stunnel4port="$(netstat -nlpt | grep -i stunnel | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
+openvpnport="$(netstat -nlpt | grep -i openvpn | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
+privoxyport="$(netstat -nlpt | grep -i privoxy | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
+squidport="$(netstat -nlpt | grep -i squid | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
+clear
+echo -e "\e[0m                                                   "
+echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+echo -e "\e[0m                                                   "
+echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman           "
+echo -e "\e[0m                                                   "
+echo -e "\e[0;37m                    Port OpenSSH    :  "$opensshport
+echo -e "\e[0;37m                    Port Dropbear   :  "$dropbearport
+echo -e "\e[0;37m                    Port SSL        :  "$stunnel4port
+echo -e "\e[0;37m                    Port Privoxy    :  "$privoxyport
+echo -e "\e[0;37m                    Port Squid      :  "$squidport
+echo -e "\e[0;37m                    Port OpenVPN    :  "$openvpnport
+echo -e "\e[0m                                                   "
+echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+echo ""
+read -sp " Press ENTER to go back"
+echo ""
+edit_ports

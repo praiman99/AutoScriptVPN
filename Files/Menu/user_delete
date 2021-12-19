@@ -1,0 +1,43 @@
+#!/bin/bash
+# Script by : PR Aiman
+
+clear
+echo -e "\e[0m                                                   "
+echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+echo -e "\e[0m                                                   "
+echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman           "
+echo -e "\e[0m                                                   "
+read -p "                  Username : " User
+echo -e "\e[0m                                                   "
+echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+egrep "^$User" /etc/passwd >/dev/null
+if [ $? -eq 0 ]; then
+	userdel -f $User
+	clear
+	echo -e "\e[0m                                                   "
+	echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+	echo -e "\e[0m                                                   "
+	echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman           "
+	echo -e "\e[0m                                                   "
+	echo -e "\e[1;32m                           User Deleted                   "
+	echo -e "\e[0m                                                   "
+	echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+	echo ""
+    read -sp " Press ENTER to go back"
+    echo ""
+    menu
+else
+	clear
+	echo -e "\e[0m                                                   "
+	echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+	echo -e "\e[0m                                                   "
+	echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman           "
+	echo -e "\e[0m                                                   "
+	echo -e "\e[1;31m                      User Doesnt Exist                "
+	echo -e "\e[0m                                                   "
+	echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+fi
+echo ""
+read -sp " Press ENTER to go back"
+echo ""
+menu
