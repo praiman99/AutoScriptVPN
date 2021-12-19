@@ -1,0 +1,27 @@
+#!/bin/bash
+# Script by : PR Aiman
+
+datenow=$(date +%s)
+for user in $(awk -F: '{print $1}' /etc/passwd); do
+expdate=$(chage -l $user|awk -F: '/Account expires/{print $2}')
+echo $expdate|grep -q never && continue
+echo -n "User \`$user' expires on $expdate ... "
+expsec=$(date +%s --date="$expdate")
+diff=$(echo $datenow - $expsec|bc -l)
+echo $diff|grep -q ^\- && echo okay && continue
+# got this far, account must have expired
+userdel -r $user  &> /dev/null
+done
+clear
+echo -e "\e[0m                                                   "
+echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+echo -e "\e[0m                                                   "
+echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman   "
+echo -e "\e[0m                                                   "
+echo -e "\e[0;37m                All Expired Users Has Been Deleted"
+echo -e "\e[0m                                                   "
+echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+echo ""
+read -sp " Press ENTER to go back"
+echo ""
+menu

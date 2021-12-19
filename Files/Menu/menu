@@ -1,0 +1,78 @@
+#!/bin/bash
+#Script by : PR Aiman
+clear
+echo -e "\e[0;32m                AutoScriptVPN Installer Version 3.0"
+echo -e "\e[0m                                                   "
+echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+echo -e "\e[0m                                                   "
+echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman"
+echo -e "\e[0m                                                   "
+echo -e "\e[0;37m                    [1] Create User Account"
+echo -e "\e[0;37m                    [2] Create Trial Account"
+echo -e "\e[0;37m                    [3] Extend User Account"
+echo -e "\e[0;37m                    [4] Display User Lists"
+echo -e "\e[0;37m                    [5] Delete User Account"
+echo -e "\e[0;37m                    [6] Delete Expired User"
+echo -e "\e[0;37m                    [7] Check Account Login"
+echo -e "\e[0;37m                    [8] Set Multi Login Autokill"
+echo -e "\e[0;37m                    [9] More Options"
+echo -e "\e[0;37m                    [x] Exit"
+echo -e "\e[0m                                                   "
+read -p "              Select From Options [1-9 or x] : " menu
+echo -e "\e[0m                                                   "
+echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+clear
+case $menu in
+		1)
+		clear
+		create
+		exit
+		;;
+		2)
+		clear
+		create_trial
+		exit
+		;;
+		3)
+		clear
+		renew_account
+		exit
+		;;
+		4)
+		clear
+		user_list
+		exit
+		;;
+		5)
+		clear
+		user_delete
+		exit
+		;;
+		6)
+		clear
+		delete_expired
+		exit
+		;;
+		7)
+		clear
+		connections
+		exit
+		;;
+		8)
+		clear
+		set_multilogin_autokill
+		exit
+		;;
+		9)
+		clear
+		options
+		exit
+		;;
+		x)
+		clear
+		exit
+		;;
+		*)
+        menu
+		;;
+	esac
