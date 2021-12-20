@@ -1,0 +1,75 @@
+#!/bin/bash
+# Script by : PR Aiman
+
+clear
+echo -e "\e[0m                                                   "
+echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+echo -e "\e[0m                                                   "
+echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman          "
+echo -e "\e[0m                                                   "
+echo -e "\e[0;37m                    [1] Speedtest Server"
+echo -e "\e[0;37m                    [2] Restart Services"
+echo -e "\e[0;37m                    [3] Change Server Message"
+echo -e "\e[0;37m                    [4] Change Timezone"
+echo -e "\e[0;37m                    [5] Change Port"
+echo -e "\e[0;37m                    [6] Reboot Options"
+echo -e "\e[0;37m                    [7] Reboot"
+echo -e "\e[0;37m                    [8] Back"
+echo -e "\e[0;37m                    [x] Exit"
+echo -e "\e[0m                                                   "
+read -p "              Select From Options [1-8 or x] : " Options
+echo -e "\e[0m                                                   "
+echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+clear
+case $Options in
+		1)
+		clear
+		speedtest
+		echo ""
+        read -sp " Press ENTER to go back"
+        echo ""
+        options
+		;;
+		2)
+		clear
+		restart_services
+		exit
+		;;
+		3)
+		clear
+		nano /etc/banner
+		exit
+		;;
+		4)
+		clear
+		change_timezone
+		exit
+		;;
+		5)
+		clear
+		edit_ports
+		exit
+		;;
+		6)
+		clear
+		reboot_sys_auto
+		exit
+		;;
+		7)
+		clear
+		reboot_sys
+		exit
+		;;
+		8)
+		clear
+		menu
+		exit
+		;;
+		x)
+		clear
+		exit
+		;;
+		*)
+        options
+		;;
+	esac
