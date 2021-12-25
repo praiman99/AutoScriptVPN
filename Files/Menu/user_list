@@ -1,0 +1,40 @@
+#!/bin/bash
+# Script by : PR Aiman
+
+if [ -f /etc/debian_version ]; then
+	UIDN=1000
+elif [ -f /etc/redhat-release ]; then
+	UIDN=500
+else
+	UIDN=500
+fi
+clear
+
+echo -e "\e[0m                                                   "
+echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+echo -e "\e[0m                                                   "
+echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman   "
+echo -e "\e[0m                                                   "
+echo -e "\e[0;37m           Username          Expiration         "
+echo " "
+while read Checklist
+do
+        Spacer="    "
+        Account="$(echo $Checklist | cut -d: -f1)"
+        ID="$(echo $Checklist | grep -v nobody | cut -d: -f3)"
+        Exp="$(chage -l $Account | grep "Account expires" | awk -F": " '{print $2}')"
+        if [[ $ID -ge $UIDN ]]; then
+        printf "%-26s : %5s\n" "           $Account"    "$Exp"
+        fi
+done < /etc/passwd
+No_Users="$(awk -F: '$3 >= '$UIDN' && $1 != "nobody" {print $1}' /etc/passwd | wc -l)"
+echo -e "\e[0m                                                   "
+echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+echo -e "\e[0m                                                   "
+echo -e "\e[0;37m                    Number of Users: "$No_Users
+echo -e "\e[0m                                                   "
+echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+echo ""
+read -sp " Press ENTER to go back"
+echo ""
+menu

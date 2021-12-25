@@ -1,0 +1,109 @@
+#!/bin/bash
+# Script by : PR Aiman
+clear
+echo -e "\e[0m                                                   "
+echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+echo -e "\e[0m                                                   "
+echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman           "
+echo -e "\e[0m                                                   "
+echo -e "\e[0;37m                    [1]  AutoKill After 5 Minutes"
+echo -e "\e[0;37m                    [2]  AutoKill After 15 Minutes"
+echo -e "\e[0;37m                    [3]  AutoKill After 30 Minutes"
+echo -e "\e[0;37m                    [4]  Turn Off AutoKill/MultiLogin"
+echo -e "\e[0;37m                    [5]  Back"
+echo -e "\e[0;37m                    [x]  Exit"
+echo -e "\e[0m                                                   "
+read -p "              Select From Options [1-5 or x] : " AutoKill
+echo -e "\e[0m                                                   "
+case $AutoKill in
+		1)
+		read -p "            Allowed MultiLogin        :  " -e -i 1 MultiLogin
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		clear
+		echo "*/5 * * * *  root /usr/bin/set_multilogin_autokill_lib $MultiLogin" > /etc/cron.d/set_multilogin_autokill_lib
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman           "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    Allowed MultiLogin : "$MultiLogin
+		echo -e "\e[0;37m                    AutoKill Every     : 5 Minutes"
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo ""
+        read -sp " Press ENTER to go back"
+        echo ""
+        set_multilogin_autokill
+		;;
+		2)
+		read -p "            Allowed MultiLogin        :  " -e -i 1 MultiLogin
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		sleep 4
+		clear
+		echo "*/15 * * * *  root /usr/bin/set_multilogin_autokill_lib $MultiLogin" > /etc/cron.d/set_multilogin_autokill_lib
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman           "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    Allowed MultiLogin : "$MultiLogin
+		echo -e "\e[0;37m                    AutoKill Every     : 15 Minutes"
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo ""
+        read -sp " Press ENTER to go back"
+        echo ""
+        set_multilogin_autokill
+		;;
+		3)
+		read -p "            Allowed MultiLogin        :  " -e -i 1 MultiLogin
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		sleep 4
+		clear
+		echo "*/30 * * * *  root /usr/bin/set_multilogin_autokill_lib $MultiLogin" > /etc/cron.d/set_multilogin_autokill_lib
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman           "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    Allowed MultiLogin : "$MultiLogin
+		echo -e "\e[0;37m                    AutoKill Every     : 30 Minutes"
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo ""
+        read -sp " Press ENTER to go back"
+        echo ""
+        set_multilogin_autokill
+		;;
+		4)
+		clear
+		rm -f /etc/cron.d/set_multilogin_autokill_lib
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman           "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    AutoKill MultiLogin Turned               "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo ""
+        read -sp " Press ENTER to go back"
+        echo ""
+        set_multilogin_autokill
+		;;
+		5)
+		clear
+		menu
+		exit
+		;;
+		x)
+		clear
+		exit
+		;;
+		*)
+        set_multilogin_autokill
+		;;
+	esac

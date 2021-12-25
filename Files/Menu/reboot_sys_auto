@@ -1,0 +1,194 @@
+#!/bin/bash
+# Script by : PR Aiman
+clear
+if [ ! -e /usr/local/bin/reboot_sys ]; then
+	echo "#!/bin/bash" > /usr/local/bin/reboot_sys 
+	echo 'tanggal=$(date +"%d-%m-%Y")' >> /usr/local/bin/reboot_sys 
+	echo 'waktu=$(date +"%T")' >> /usr/local/bin/reboot_sys 
+	echo 'echo -e "\e[0;37m         Successfully Reboot On $tanggal Time $waktu." >> /root/reboot-log.txt' >> /usr/local/bin/reboot_sys 
+	echo ""
+	echo '/sbin/shutdown -r now' >> /usr/local/bin/reboot_sys 
+	chmod +x /usr/local/bin/reboot_sys
+fi
+
+echo -e "\e[0m                                                   "
+echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+echo -e "\e[0m                                                   "
+echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman   "
+echo -e "\e[0m                                                   "
+echo -e "\e[0;37m                    [1] Reboot Every 1 Hour"
+echo -e "\e[0;37m                    [2] Reboot Every 2 Hours"
+echo -e "\e[0;37m                    [3] Reboot Every 12 Hours"
+echo -e "\e[0;37m                    [4] Reboot Once A Day"
+echo -e "\e[0;37m                    [5] Reboot Once A Week"
+echo -e "\e[0;37m                    [6] Reboot Once A Month"
+echo -e "\e[0;37m                    [7] View Log Reboot"
+echo -e "\e[0;37m                    [8] Remove Reboot"
+echo -e "\e[0;37m                    [9] Back"
+echo -e "\e[0;37m                    [x] Exit"
+echo -e "\e[0m                                                   "
+read -p "              Select From Options [1-9 or x] : " Reboot_Sys
+echo -e "\e[0m                                                   "
+echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+clear
+case $Reboot_Sys in
+		1)
+		clear
+		echo "10 * * * * root /usr/local/bin/reboot_sys" > /etc/cron.d/reboot_sys
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman   "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                   Auto-Reboot Set Every Hour   "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo ""
+        read -sp " Press ENTER to go back"
+        echo ""
+        reboot_sys_auto
+        ;;
+		2)
+		clear
+		echo "10 */6 * * * root /usr/local/bin/reboot_sys" > /etc/cron.d/reboot_sys
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman   "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                  Auto-Reboot Set Every 2 Hours "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo ""
+        read -sp " Press ENTER to go back"
+        echo ""
+        reboot_sys_auto
+        ;;
+		3)
+		clear
+		echo "10 */12 * * * root /usr/local/bin/reboot_sys" > /etc/cron.d/reboot_sys
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman   "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                  Auto-Reboot Set Every 12 Hours"
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo ""
+        read -sp " Press ENTER to go back"
+        echo ""
+        reboot_sys_auto
+        ;;
+		4)
+		clear
+		echo "10 0 * * * root /usr/local/bin/reboot_sys" > /etc/cron.d/reboot_sys
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman   "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    Auto-Reboot Set Once A Day  "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo ""
+        read -sp " Press ENTER to go back"
+        echo ""
+        reboot_sys_auto
+        ;;
+		5)
+		clear
+		echo "10 0 */7 * * root /usr/local/bin/reboot_sys" > /etc/cron.d/reboot_sys
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman   "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                   Auto-Reboot Set Once A Week  "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo ""
+        read -sp " Press ENTER to go back"
+        echo ""
+        reboot_sys_auto
+        ;;
+		6)
+		clear
+		echo "10 0 1 * * root /usr/local/bin/reboot_sys" > /etc/cron.d/reboot_sys
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman   "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                   Auto-Reboot Set Once A Month "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo ""
+        read -sp " Press ENTER to go back"
+        echo ""
+        reboot_sys_auto
+        ;;
+		7)
+		clear
+		if [ ! -e /root/reboot-log.txt ]; then
+	         echo -e "\e[0m                                                   "
+		     echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		     echo -e "\e[0m                                                   "
+		     echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman   "
+		     echo -e "\e[0m                                                   "
+			 echo -e "\e[1;31m                    No Reboot Activity Found    "
+			 echo -e "\e[0m                                                   "
+		     echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+			 echo -e "\e[0m                                                   "
+			 echo ""
+             read -sp " Press ENTER to go back"
+             echo ""
+             reboot_sys_auto
+	         else 
+	         echo -e "\e[0m                                                   "
+		     echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		     echo -e "\e[0m                                                   "
+		     echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman   "
+		     echo -e "\e[0m                                                   "
+			 echo -e "\e[\e[0;37m                          LOG REBOOT         "
+			 echo -e "\e[0m                                                   "
+			 cat /root/reboot-log.txt
+			 echo -e "\e[0m                                                   "
+		     echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+			 echo -e "\e[0m                                                   "
+			 echo ""
+             read -sp " Press ENTER to go back"
+             echo ""
+             reboot_sys_auto
+        fi
+		exit
+		;;
+		8)
+		clear
+		rm -f /etc/cron.d/reboot_sys
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                    AutoScriptVPN by PR Aiman   "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[0;37m                       Auto-Reboot Removed      "
+		echo -e "\e[0m                                                   "
+		echo -e "\e[1;31m     [*][*][*]======================================[*][*][*]"
+		echo ""
+        read -sp " Press ENTER to go back"
+        echo ""
+        reboot_sys_auto
+        ;;
+		9)
+		clear
+		options
+		exit
+		;;
+		x)
+		clear
+		exit
+		;;
+		*)
+        reboot_sys_auto
+		;;
+	esac
