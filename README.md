@@ -36,8 +36,6 @@
 <pre align="center">wget https://raw.githubusercontent.com/praiman99/AutoScriptVPN/master/setup && chmod +x setup && ./setup
 </pre></p>
 
-<h3 align="center">NOTE FOR DEBIAN 11 OR UP</h3>
-<h3 align="center">Please After Installation Success Type this command systemctl restart stunnel4 after that just enter just it. </h3>
 <h3 align="center">Download Link Configs OpenVPN</h3>
 
 <pre align="center">http://ipvps:85
