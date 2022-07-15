@@ -109,6 +109,7 @@ function InstUpdates(){
  apt-get install apt-transport-https -y
  apt-get install lsb-release -y
  apt-get install squid3 -y
+ apt-get install squid -y
  
  # Installing all required packages to install Webmin
  apt-get install perl -y
